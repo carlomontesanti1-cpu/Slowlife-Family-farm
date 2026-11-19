@@ -1,7 +1,7 @@
 # Still open
 
 ## Needs Carlo
-- Booking link: every "Book Now" leads to the closing section, whose button currently opens an email. Replace with the real booking system link.
+- Booking: all "Book Now" buttons open the TicketingHub checkout copied from the old site (product is named "From Gardent to Table" there — fix the spelling in TicketingHub). Check prices there match €150 / €75.
 - A line in your own words about why you share your table (hosts section).
 - Gardens: how many gardens, what you grow through the year, how you grow it.
 - Season dates (old site hinted at a winter break, November 1 to March 31) — FAQ "When are you open?" was left out until confirmed.
