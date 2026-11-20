@@ -17,3 +17,10 @@
 - Trustindex review widgets are in place; they may only display on the real domain.
 - Instagram row uses 20 saved photos; swap for a live feed widget if wanted.
 - Choose hosting and point www.slowlifefamilyfarm.com at this site.
+
+## From the site review (20 Nov)
+- Cookie notice and privacy policy: the site loads YouTube, Trustindex and Google Fonts. Under Italian/EU rules it needs a privacy page and, most likely, a consent banner. Needs Carlo's decision / legal advice.
+- Same film appears twice on a page: gardens film (homepage: chapter 01 and Organic Garden), music film and dancing film (The Old Table). Decide one place each.
+- Two of three guest quotes are from the same guest.
+- Poetry and Songs parts have no video yet.
+- Luxury restyle option: serif headlines, full-screen first film, edge-to-edge photos (not approved yet).
