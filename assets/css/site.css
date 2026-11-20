@@ -97,8 +97,7 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .hero-text .pitch { flex: 1 1 320px; max-width: 460px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .rating-line { font-size: 14px; color: var(--muted); }
 
-.google-rating { display: block; width: min(calc(100% - 2 * var(--pad)), 440px); margin: clamp(28px, 4vw, 44px) auto 0; border-radius: 999px; overflow: hidden; }
-.google-rating img { width: 100%; height: auto; }
+.google-rating { width: min(calc(100% - 2 * var(--pad)), 560px); margin: clamp(28px, 4vw, 44px) auto 0; text-align: center; }
 
 /* ---------- intro ---------- */
 .intro { padding: clamp(64px, 9vw, 128px) var(--pad); display: flex; flex-wrap: wrap; align-items: center; gap: 40px 64px; }
