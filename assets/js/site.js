@@ -43,28 +43,80 @@
     }, { rootMargin: '200px 0px', threshold: 0.15 });
     clips.forEach(function (v) { v.muted = true; io.observe(v); });
   }
-  // Review widgets: any link that would go to Trustindex opens our Google reviews (to read) instead.
-  var MAPS = 'https://search.google.com/local/reviews?placeid=ChIJKTmjqG7PExMRBcpVudgLpWw';
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('.reviews-widget a');
-    if (!a) return;
-    var href = a.getAttribute('href') || '';
-    if (/trustindex/i.test(href) || /trustindex/i.test(a.getAttribute('data-href') || '')) {
-      e.preventDefault();
-      e.stopPropagation();
-      window.open(MAPS, '_blank', 'noopener');
+  // ---------- Review widgets (Trustindex) ----------
+  // We cannot edit the widget itself, so we tidy it after it loads. This works whether
+  // the widget sits in the page or inside a shadow root, and does not rely on its class names.
+  var REVIEWS = 'https://search.google.com/local/reviews?placeid=ChIJKTmjqG7PExMRBcpVudgLpWw';
+  var mainEl = document.querySelector('main');
+
+  var walk = function (root, cb) {
+    var all = root.querySelectorAll('*');
+    for (var i = 0; i < all.length; i++) {
+      cb(all[i]);
+      if (all[i].shadowRoot) walk(all[i].shadowRoot, cb);
     }
-  }, true);
-  // Review widgets: no "Write a review" button. Guests should read reviews, not be asked to write one.
-  var hideWrite = function () {
-    document.querySelectorAll('.reviews-widget a, .reviews-widget button, .reviews-widget [class*="write"]').forEach(function (el) {
-      if (/write\s+a?\s*review/i.test(el.textContent || '') && (el.textContent || '').length < 40) el.style.setProperty('display', 'none', 'important');
+  };
+  var up = function (el) { return el.parentElement || (el.getRootNode && el.getRootNode().host) || null; };
+  var hide = function (el) { el.style.setProperty('display', 'none', 'important'); };
+  var inBadge = function (el) {
+    var top = el, p;
+    while ((p = up(top)) && p !== document.body) {
+      if (p.classList && p.classList.contains('reviews-badge')) return true;
+      if (p.classList && p.classList.contains('reviews-list')) return false;
+      top = p;
+    }
+    return !!(mainEl && !mainEl.contains(top) && (mainEl.compareDocumentPosition(top) & Node.DOCUMENT_POSITION_FOLLOWING));
+  };
+
+  var tidyReviews = function () {
+    walk(document, function (el) {
+      if (el.children.length || !/^\s*write\s+a\s+review\s*$/i.test(el.textContent || '')) return;
+      if (el.closest('main > section:not(#reviews), header, footer')) return; // never touch our own page text
+      // 1. Hide the "Write a review" button itself.
+      var btn = el.closest('a, button') || el;
+      hide(btn);
+      // 2. Find the small summary box around it ("5.0 · Excellent · 659 reviews").
+      var box = btn, p;
+      while ((p = box.parentElement) && (p.textContent || '').trim().length < 160 && !/reviews-(list|badge|widget)/.test(p.className || '')) box = p;
+      if (box === btn) return;
+      if (inBadge(box)) {
+        // Bottom of the page: keep only the summary box, centered.
+        var node = box;
+        while ((p = node.parentElement) && !/reviews-badge/.test(p.className || '') && p !== document.body) {
+          Array.prototype.forEach.call(p.children, function (sib) { if (sib !== node && !/^(STYLE|LINK|SCRIPT)$/.test(sib.tagName)) hide(sib); });
+          node = p;
+        }
+        box.style.setProperty('margin', '0 auto', 'important');
+        box.style.setProperty('text-align', 'center', 'important');
+      } else {
+        // Reviews section: show the reviews without the summary box.
+        hide(box);
+      }
     });
   };
-  if ('MutationObserver' in window) {
-    document.querySelectorAll('.reviews-widget').forEach(function (w) {
-      new MutationObserver(hideWrite).observe(w, { childList: true, subtree: true });
-    });
+  if (document.querySelector('.reviews-widget')) {
+    var tries = 0;
+    var timer = setInterval(function () { tidyReviews(); if (++tries > 60) clearInterval(timer); }, 500);
+    if ('MutationObserver' in window) {
+      var pending = false;
+      new MutationObserver(function () {
+        if (pending) return; pending = true;
+        setTimeout(function () { pending = false; tidyReviews(); }, 200);
+      }).observe(document.body, { childList: true, subtree: true });
+    }
   }
-  hideWrite();
+
+  // Any link that would go to Trustindex opens our Google reviews (to read) instead.
+  document.addEventListener('click', function (e) {
+    var path = e.composedPath ? e.composedPath() : [e.target];
+    for (var i = 0; i < path.length; i++) {
+      var n = path[i];
+      if (n && n.tagName === 'A' && /trustindex/i.test((n.getAttribute('href') || '') + (n.getAttribute('data-href') || ''))) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(REVIEWS, '_blank', 'noopener');
+        return;
+      }
+    }
+  }, true);
 })();
