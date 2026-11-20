@@ -293,5 +293,6 @@ section[id], header[id] { scroll-margin-top: 12px; }
 
 /* keep the menu row on one line on phones */
 @media (max-width: 480px) {
-  .nav { gap: 0 clamp(7px, 2.4vw, 12px); font-size: clamp(10.5px, 3vw, 12px); }
+  .topbar { padding-left: 12px; padding-right: 12px; }
+  .nav { flex-wrap: nowrap; justify-content: space-between; gap: 0 6px; font-size: clamp(10px, 2.95vw, 12.5px); letter-spacing: -0.01em; }
 }
