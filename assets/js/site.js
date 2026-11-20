@@ -140,7 +140,7 @@
   var tidyReviews = function () {
     walk(document, function (el) {
       if (el.children.length || !/^\s*write\s+a\s+review\s*$/i.test(el.textContent || '')) return;
-      if (el.closest('main > section:not(#reviews), header, footer')) return; // never touch our own page text
+      if (!el.closest('.reviews-widget') && el.closest('main > section:not(#reviews), header, footer')) return; // never touch our own page text
       // 1. Hide the "Write a review" button itself.
       var btn = el.closest('a, button') || el;
       hide(btn);
