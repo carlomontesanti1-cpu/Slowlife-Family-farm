@@ -296,7 +296,7 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .arts-grid p { color: var(--text); font-size: 17px; }
 .arts-grid .yt img { max-height: none; }
 
-.dance-film { flex: 1 1 240px; min-width: 0; width: 100%; max-width: 560px; }
+.dance-film { flex: 1 1 240px; min-width: 0; width: 100%; max-width: 560px; aspect-ratio: 2 / 3; }
 .dance-film img { max-height: none; }
 .ends .dance-film { flex: 1 1 260px; max-width: 420px; }
 
