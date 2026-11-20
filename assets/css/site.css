@@ -285,6 +285,14 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .place h3 { font-weight: 400; font-size: 22px; letter-spacing: -0.02em; }
 .place p { color: #E6E6E3; }
 
+.arts { display: flex; flex-direction: column; gap: 16px; padding-bottom: 0; }
+.arts > .lead { max-width: 680px; }
+.arts-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 36px 28px; align-items: start; }
+.arts-grid article { display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--ink); padding-top: 18px; }
+.arts-grid h3 { font-weight: 400; font-size: clamp(28px, 3vw, 36px); line-height: 1.1; letter-spacing: -0.025em; }
+.arts-grid p { color: var(--text); font-size: 17px; }
+.arts-grid .yt img { max-height: none; }
+
 /* ---------- Terms page ---------- */
 .terms { padding: clamp(40px, 7vw, 96px) var(--pad) var(--gap-y); display: flex; flex-direction: column; gap: 32px; max-width: 880px; }
 .terms .top { display: flex; flex-direction: column; gap: 14px; }
