@@ -264,6 +264,8 @@ section[id], header[id] { scroll-margin-top: 12px; }
 /* ---------- The Old Table page ---------- */
 .page-head { padding: clamp(40px, 7vw, 96px) var(--pad) clamp(32px, 5vw, 64px); display: flex; flex-direction: column; gap: 18px; }
 .page-head p { font-size: clamp(18px, 2vw, 22px); color: var(--text); max-width: 680px; }
+.page-film { width: 100%; max-width: 560px; margin: 6px 0; }
+.page-film img { max-height: none; }
 .wide-photo { margin: 0 var(--edge); }
 .wide-photo img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
 .pad-section { padding: clamp(56px, 8vw, 112px) var(--pad); }
