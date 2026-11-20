@@ -30,6 +30,24 @@
     });
   });
 
+  // Hero film: starts by itself, silent (browsers only allow silent autoplay).
+  // Tapping it loads the full player with sound (handled above).
+  var heroFilm = document.querySelector('a.yt[data-autoplay]');
+  var saveData = navigator.connection && navigator.connection.saveData;
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (heroFilm && !saveData && !calm) {
+    var id = heroFilm.dataset.yt;
+    var bg = document.createElement('iframe');
+    bg.className = 'yt-bg';
+    bg.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + id + '&playsinline=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3';
+    bg.allow = 'autoplay; encrypted-media';
+    bg.setAttribute('tabindex', '-1');
+    bg.setAttribute('aria-hidden', 'true');
+    bg.title = '';
+    heroFilm.insertBefore(bg, heroFilm.querySelector('.yt-play'));
+    heroFilm.classList.add('has-bg');
+  }
+
   // Short silent clips: play only while on screen, so the page stays fast.
   var clips = document.querySelectorAll('video[data-clip]');
   var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
