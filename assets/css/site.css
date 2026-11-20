@@ -167,7 +167,7 @@ section[id], header[id] { scroll-margin-top: 12px; }
 /* Trustindex: the review list shows without its Google summary box... */
 .reviews-list .ti-header, .reviews-list .ti-footer { display: none !important; }
 /* ...and the summary box alone sits centered at the bottom of the page. */
-.reviews-badge { padding: clamp(40px, 6vw, 72px) var(--pad) 0; display: flex; justify-content: center; text-align: center; }
+.reviews-badge { padding: 0; margin: 14px 0 6px; width: 100%; max-width: 460px; display: flex; justify-content: center; text-align: center; }
 .reviews-badge .ti-widget { width: 100%; max-width: 420px; margin: 0 auto !important; }
 .reviews-badge .ti-reviews-container, .reviews-badge .ti-reviews-container-wrapper,
 .reviews-badge .ti-controls, .reviews-badge .ti-controls-line, .reviews-badge .ti-load-more-reviews-container { display: none !important; }
