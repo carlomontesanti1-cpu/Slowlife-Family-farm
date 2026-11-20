@@ -30,73 +30,71 @@
     });
   });
 
-  // Hero film: starts by itself, silent (browsers only allow silent autoplay).
-  // Tapping it loads the full player with sound (handled above).
-  var heroFilm = document.querySelector('a.yt[data-autoplay]');
+  // Films that start by themselves (marked data-autoplay or data-autoplay-quiet).
+  // They begin silent, because browsers only allow sound after the visitor touches the page.
+  // From the first touch on, the film that is on screen plays its sound; the others stay quiet.
+  // Tapping a film still opens the full player with sound and controls (handled above).
+  var autoFilms = Array.prototype.slice.call(document.querySelectorAll('a.yt[data-autoplay], a.yt[data-autoplay-quiet]'));
   var saveData = navigator.connection && navigator.connection.saveData;
   var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (heroFilm && !saveData && !calm) {
-    var id = heroFilm.dataset.yt;
-    var bg = document.createElement('iframe');
-    bg.className = 'yt-bg';
-    bg.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + id + '&playsinline=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3&enablejsapi=1';
-    bg.allow = 'autoplay; encrypted-media';
-    bg.setAttribute('tabindex', '-1');
-    bg.setAttribute('aria-hidden', 'true');
-    bg.title = '';
-    heroFilm.insertBefore(bg, heroFilm.querySelector('.yt-play'));
-    heroFilm.classList.add('has-bg');
-
-    // Sound: browsers only allow it after the visitor touches the page,
-    // so we switch it on at the very first tap anywhere.
-    var say = function (func, args) {
-      if (!bg.isConnected || !bg.contentWindow) return;
-      bg.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), '*');
+  if (autoFilms.length && 'IntersectionObserver' in window && !saveData && !calm) {
+    var soundOn = false;
+    var seen = new Map(); // film link -> how much of it is on screen (0 to 1)
+    var say = function (frame, func, args) {
+      if (!frame || !frame.isConnected || !frame.contentWindow) return;
+      frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), '*');
     };
-    var wantSound = false, heroVisible = true;
-    var label = heroFilm.querySelector('.yt-label');
     var applySound = function () {
-      if (wantSound && heroVisible) { say('unMute'); say('setVolume', [100]); say('playVideo'); }
-      else { say('mute'); }
+      var best = null, bestRatio = 0.5;
+      autoFilms.forEach(function (a) {
+        var r = a.isConnected ? (seen.get(a) || 0) : 0;
+        if (r >= bestRatio && a.querySelector('.yt-bg')) { best = a; bestRatio = r; }
+      });
+      autoFilms.forEach(function (a) {
+        var fr = a.querySelector('.yt-bg');
+        if (!fr) return;
+        if (soundOn && a === best) { say(fr, 'unMute'); say(fr, 'setVolume', [100]); say(fr, 'playVideo'); }
+        else { say(fr, 'mute'); }
+      });
     };
+    var startFilm = function (a) {
+      if (!a.isConnected || a.querySelector('.yt-bg')) return;
+      var id = a.dataset.yt, fr = document.createElement('iframe');
+      fr.className = 'yt-bg';
+      fr.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + id + '&playsinline=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3&enablejsapi=1';
+      fr.allow = 'autoplay; encrypted-media';
+      fr.setAttribute('tabindex', '-1');
+      fr.setAttribute('aria-hidden', 'true');
+      fr.title = '';
+      fr.addEventListener('load', function () { [300, 1200, 2500].forEach(function (ms) { setTimeout(applySound, ms); }); });
+      a.insertBefore(fr, a.querySelector('.yt-play'));
+      a.classList.add('has-bg');
+    };
+    // Load each film shortly before it scrolls into view (the first one on the page loads at once).
+    var loader = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { startFilm(en.target); loader.unobserve(en.target); } });
+    }, { rootMargin: '300px 0px' });
+    var watcher = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { seen.set(en.target, en.isIntersecting ? en.intersectionRatio : 0); });
+      applySound();
+    }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+    autoFilms.forEach(function (a) {
+      if (a.hasAttribute('data-autoplay')) startFilm(a); else loader.observe(a);
+      watcher.observe(a);
+    });
     var firstTouch = function (e) {
       ['click', 'touchend', 'keydown'].forEach(function (t) { document.removeEventListener(t, firstTouch, true); });
       var t = e.target;
       if (t && t.closest && t.closest('a.yt, video')) return; // they chose a film themselves: let that one play
-      wantSound = true;
+      soundOn = true;
       applySound();
-      if (label) label.textContent = 'Tap for the full film';
+      autoFilms.forEach(function (a) { var l = a.querySelector('.yt-label'); if (l && /tap for sound/i.test(l.textContent)) l.textContent = 'Tap for the full film'; });
     };
     ['click', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, firstTouch, true); });
-    // Quiet again once the film is scrolled off the screen, or another film is started.
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) { heroVisible = en[0].isIntersecting; applySound(); }, { threshold: 0.25 }).observe(heroFilm);
-    }
+    // If the visitor starts any film themselves, the automatic sound steps aside.
     document.addEventListener('click', function (e) {
-      if (e.target.closest && e.target.closest('a.yt, video[controls]')) { wantSound = false; applySound(); }
+      if (e.target.closest && e.target.closest('a.yt, video[controls]')) { soundOn = false; applySound(); }
     }, true);
-  }
-
-  // Other films marked to start by themselves: silent, and only once they are near the screen.
-  var quiet = document.querySelectorAll('a.yt[data-autoplay-quiet]');
-  if (quiet.length && 'IntersectionObserver' in window && !(navigator.connection && navigator.connection.saveData) &&
-      !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-    var qio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        var a = en.target;
-        if (!en.isIntersecting || !a.isConnected || a.querySelector('.yt-bg')) return;
-        var vid = a.dataset.yt, fr = document.createElement('iframe');
-        fr.className = 'yt-bg';
-        fr.src = 'https://www.youtube-nocookie.com/embed/' + vid + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + vid + '&playsinline=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3';
-        fr.allow = 'autoplay; encrypted-media';
-        fr.setAttribute('tabindex', '-1');
-        fr.setAttribute('aria-hidden', 'true');
-        a.insertBefore(fr, a.querySelector('.yt-play'));
-        a.classList.add('has-bg');
-        qio.unobserve(a);
-      });
-    }, { rootMargin: '300px 0px' });
-    quiet.forEach(function (a) { qio.observe(a); });
   }
 
   // Short silent clips: play only while on screen, so the page stays fast.
