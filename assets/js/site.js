@@ -77,6 +77,28 @@
     }, true);
   }
 
+  // Other films marked to start by themselves: silent, and only once they are near the screen.
+  var quiet = document.querySelectorAll('a.yt[data-autoplay-quiet]');
+  if (quiet.length && 'IntersectionObserver' in window && !(navigator.connection && navigator.connection.saveData) &&
+      !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var qio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var a = en.target;
+        if (!en.isIntersecting || !a.isConnected || a.querySelector('.yt-bg')) return;
+        var vid = a.dataset.yt, fr = document.createElement('iframe');
+        fr.className = 'yt-bg';
+        fr.src = 'https://www.youtube-nocookie.com/embed/' + vid + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + vid + '&playsinline=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3';
+        fr.allow = 'autoplay; encrypted-media';
+        fr.setAttribute('tabindex', '-1');
+        fr.setAttribute('aria-hidden', 'true');
+        a.insertBefore(fr, a.querySelector('.yt-play'));
+        a.classList.add('has-bg');
+        qio.unobserve(a);
+      });
+    }, { rootMargin: '300px 0px' });
+    quiet.forEach(function (a) { qio.observe(a); });
+  }
+
   // Short silent clips: play only while on screen, so the page stays fast.
   var clips = document.querySelectorAll('video[data-clip]');
   var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
