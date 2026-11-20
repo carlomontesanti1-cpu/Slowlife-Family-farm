@@ -147,6 +147,14 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .quotes blockquote { font-weight: 300; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; letter-spacing: -0.02em; }
 .quotes figcaption { font-size: 14px; color: var(--muted); }
 .reviews-widget:empty { display: none; }
+/* Trustindex: the review list shows without its Google summary box... */
+.reviews-list .ti-header, .reviews-list .ti-footer { display: none !important; }
+/* ...and the summary box alone sits centered at the bottom of the page. */
+.reviews-badge { padding: clamp(40px, 6vw, 72px) var(--pad) 0; display: flex; justify-content: center; text-align: center; }
+.reviews-badge .ti-widget { width: 100%; max-width: 420px; margin: 0 auto !important; }
+.reviews-badge .ti-reviews-container, .reviews-badge .ti-reviews-container-wrapper,
+.reviews-badge .ti-controls, .reviews-badge .ti-controls-line, .reviews-badge .ti-load-more-reviews-container { display: none !important; }
+.reviews-badge .ti-header, .reviews-badge .ti-footer { display: block !important; text-align: center !important; margin: 0 auto !important; float: none !important; }
 
 /* ---------- price ---------- */
 .price { display: flex; flex-direction: column; gap: 28px; }
