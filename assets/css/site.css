@@ -156,7 +156,7 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .reviews .head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 32px; }
 .ending { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; }
 .ending img { flex: 2 1 420px; min-width: 0; aspect-ratio: 4 / 3; }
-.ending h3 { flex: 1 1 100%; margin: 8px 0; font-weight: 600; font-size: clamp(32px, 5vw, 60px); line-height: 1.05; letter-spacing: -0.025em; }
+.ending h3 { flex: 1 1 100%; margin: 8px 0; font-weight: 600; font-size: clamp(18px, 7.1vw, 60px); line-height: 1.05; letter-spacing: -0.03em; white-space: nowrap; }
 .ending video { flex: 1 1 240px; min-width: 0; width: 100%; max-width: 560px; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 6px; background: var(--ink); }
 .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px 32px; }
 .quotes figure { display: flex; flex-direction: column; gap: 18px; }
@@ -304,5 +304,5 @@ section[id], header[id] { scroll-margin-top: 12px; }
 /* keep the menu row on one line on phones */
 @media (max-width: 480px) {
   .topbar { padding-left: 12px; padding-right: 12px; }
-  .nav { flex-wrap: nowrap; justify-content: space-between; gap: 0 5px; font-size: clamp(9.5px, 2.72vw, 12px); letter-spacing: -0.015em; }
+  .nav { flex-wrap: nowrap; overflow-x: auto; justify-content: space-between; gap: 0 5px; font-size: clamp(9.5px, 2.72vw, 12px); letter-spacing: -0.015em; }
 }
