@@ -43,4 +43,16 @@
     }, { rootMargin: '200px 0px', threshold: 0.15 });
     clips.forEach(function (v) { v.muted = true; io.observe(v); });
   }
+  // Review widgets: any link that would go to Trustindex opens our Google Maps page instead.
+  var MAPS = 'https://www.google.com/maps/place/?q=place_id:ChIJKTmjqG7PExMRBcpVudgLpWw';
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.reviews-widget a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/trustindex/i.test(href) || /trustindex/i.test(a.getAttribute('data-href') || '')) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open(MAPS, '_blank', 'noopener');
+    }
+  }, true);
 })();
