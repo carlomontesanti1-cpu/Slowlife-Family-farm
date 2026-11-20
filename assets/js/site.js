@@ -39,13 +39,42 @@
     var id = heroFilm.dataset.yt;
     var bg = document.createElement('iframe');
     bg.className = 'yt-bg';
-    bg.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + id + '&playsinline=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3';
+    bg.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + id + '&playsinline=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3&enablejsapi=1';
     bg.allow = 'autoplay; encrypted-media';
     bg.setAttribute('tabindex', '-1');
     bg.setAttribute('aria-hidden', 'true');
     bg.title = '';
     heroFilm.insertBefore(bg, heroFilm.querySelector('.yt-play'));
     heroFilm.classList.add('has-bg');
+
+    // Sound: browsers only allow it after the visitor touches the page,
+    // so we switch it on at the very first tap anywhere.
+    var say = function (func, args) {
+      if (!bg.isConnected || !bg.contentWindow) return;
+      bg.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), '*');
+    };
+    var wantSound = false, heroVisible = true;
+    var label = heroFilm.querySelector('.yt-label');
+    var applySound = function () {
+      if (wantSound && heroVisible) { say('unMute'); say('setVolume', [100]); say('playVideo'); }
+      else { say('mute'); }
+    };
+    var firstTouch = function (e) {
+      ['click', 'touchend', 'keydown'].forEach(function (t) { document.removeEventListener(t, firstTouch, true); });
+      var t = e.target;
+      if (t && t.closest && t.closest('a.yt, video')) return; // they chose a film themselves: let that one play
+      wantSound = true;
+      applySound();
+      if (label) label.textContent = 'Tap for the full film';
+    };
+    ['click', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, firstTouch, true); });
+    // Quiet again once the film is scrolled off the screen, or another film is started.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { heroVisible = en[0].isIntersecting; applySound(); }, { threshold: 0.25 }).observe(heroFilm);
+    }
+    document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a.yt, video[controls]')) { wantSound = false; applySound(); }
+    }, true);
   }
 
   // Short silent clips: play only while on screen, so the page stays fast.
