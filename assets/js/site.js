@@ -43,8 +43,8 @@
     }, { rootMargin: '200px 0px', threshold: 0.15 });
     clips.forEach(function (v) { v.muted = true; io.observe(v); });
   }
-  // Review widgets: any link that would go to Trustindex opens our Google Maps page instead.
-  var MAPS = 'https://www.google.com/maps/place/?q=place_id:ChIJKTmjqG7PExMRBcpVudgLpWw';
+  // Review widgets: any link that would go to Trustindex opens our Google reviews (to read) instead.
+  var MAPS = 'https://search.google.com/local/reviews?placeid=ChIJKTmjqG7PExMRBcpVudgLpWw';
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('.reviews-widget a');
     if (!a) return;
@@ -55,4 +55,16 @@
       window.open(MAPS, '_blank', 'noopener');
     }
   }, true);
+  // Review widgets: no "Write a review" button. Guests should read reviews, not be asked to write one.
+  var hideWrite = function () {
+    document.querySelectorAll('.reviews-widget a, .reviews-widget button, .reviews-widget [class*="write"]').forEach(function (el) {
+      if (/write\s+a?\s*review/i.test(el.textContent || '') && (el.textContent || '').length < 40) el.style.setProperty('display', 'none', 'important');
+    });
+  };
+  if ('MutationObserver' in window) {
+    document.querySelectorAll('.reviews-widget').forEach(function (w) {
+      new MutationObserver(hideWrite).observe(w, { childList: true, subtree: true });
+    });
+  }
+  hideWrite();
 })();

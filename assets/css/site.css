@@ -147,6 +147,7 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .quotes blockquote { font-weight: 300; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; letter-spacing: -0.02em; }
 .quotes figcaption { font-size: 14px; color: var(--muted); }
 .reviews-widget:empty { display: none; }
+.reviews-widget .ti-header-write-btn, .reviews-widget .ti-header-write-btn-container, .reviews-widget .ti-write-btn, .reviews-widget [class*="write-btn"] { display: none !important; }
 /* Trustindex: the review list shows without its Google summary box... */
 .reviews-list .ti-header, .reviews-list .ti-footer { display: none !important; }
 /* ...and the summary box alone sits centered at the bottom of the page. */
