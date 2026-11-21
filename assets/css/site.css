@@ -132,6 +132,8 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .chapter .yt { border-radius: 6px; }
 .chapter .yt img { border-radius: 0; max-height: none; }
 .chapter .yt.is-playing { aspect-ratio: 9 / 16; }
+.clip-sound { position: relative; cursor: pointer; }
+.clip-sound .yt-label { border: 0; font-family: inherit; cursor: pointer; }
 .chapter p { color: var(--text); }
 
 /* ---------- the game ---------- */

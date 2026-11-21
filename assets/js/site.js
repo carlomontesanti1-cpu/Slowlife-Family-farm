@@ -186,4 +186,14 @@
       }
     }
   }, true);
+  // Our own clips that carry sound: tap the clip (or its label) to switch the sound on and off.
+  document.querySelectorAll('.clip-sound').forEach(function (box) {
+    var v = box.querySelector('video'), label = box.querySelector('[data-sound-toggle]');
+    if (!v || !label) return;
+    box.addEventListener('click', function () {
+      v.muted = !v.muted;
+      if (!v.muted) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      label.textContent = v.muted ? 'Tap for sound' : 'Sound on \u00b7 tap to mute';
+    });
+  });
 })();
