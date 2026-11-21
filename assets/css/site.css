@@ -47,6 +47,11 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .section.soft { background: var(--soft); }
 .stack { display: flex; flex-direction: column; }
 
+/* ---------- slim Google rating strip at the very top of every page ---------- */
+.top-rating { height: 42px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--line); background: #FFFFFF; }
+.top-rating > * { zoom: 0.62; margin: 0 !important; }
+.top-rating:empty { display: none; }
+
 /* ---------- top bar and menu ---------- */
 .topbar { padding: 14px var(--pad); display: flex; flex-direction: column; gap: 12px; }
 .brand-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
