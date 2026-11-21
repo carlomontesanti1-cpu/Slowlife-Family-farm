@@ -379,3 +379,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .chapters { border-top: 1px solid var(--line); padding-top: 22px; }
 }
 .day-photo { aspect-ratio: 16 / 9; max-height: 640px; object-position: center 40%; }
+
+/* ---------- wide screens: calmer, two-column layouts ---------- */
+@media (min-width: 900px) {
+  /* first screen: the film on the left, the invitation on the right (no black band) */
+  #top { display: grid; grid-template-columns: minmax(300px, 36%) 1fr; column-gap: clamp(32px, 5vw, 80px); align-items: start; }
+  #top > .hero-film, #top > .hero-text { margin-top: 28px; }
+  #top > * { grid-column: 1 / -1; }
+  #top > .hero-film { grid-column: 1; margin: 0 0 0 var(--pad); }
+  #top > .hero-text { grid-column: 2; padding: 0 var(--pad) 0 0; flex-direction: column; flex-wrap: nowrap; align-items: flex-start; justify-content: center; gap: 28px; }
+  #top .hero-text .title, #top .hero-text .pitch { flex: none; max-width: 600px; }
+  #top .hero-text .h-xl { font-size: clamp(48px, 5.4vw, 88px); }
+  .hero-clip { background: none; display: block; }
+  .hero-clip video { width: 100%; height: auto; max-height: 86vh; aspect-ratio: 9 / 16; object-fit: cover; }
+  /* the game: photo and words side by side */
+  .game { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 5vw, 72px); align-content: center; }
+  .game > * { grid-column: 2; }
+  .game > img { grid-column: 1; grid-row: 1 / span 6; align-self: center; aspect-ratio: 1 / 1 !important; max-height: 600px; object-position: 22% center; }
+  .game .btn { justify-self: start; }
+  .price > img { max-height: 520px; }
+  .day-photo { max-height: 520px; }
+}
