@@ -4,7 +4,7 @@ Plain static site (no build step) for www.slowlifefamilyfarm.com.
 Owner: Carlo Montesanti, with Jessie. Audience: American-English-speaking travelers. Goal: send people to book.
 
 ## Files
-- `index.html` — homepage (hero film, the day in seven chapters, the game, films, reviews, price, gardens, story, visit, Instagram, FAQ, contact, booking)
+- `index.html` — homepage (hero film, the day in seven movements, the game, films, reviews, price, gardens, story, visit, Instagram, FAQ, contact, booking)
 - `the-old-table.html` — Back to the Old Table
 - `terms.html` — terms and agreements (includes photo/video consent)
 - `assets/css/site.css`, `assets/js/site.js`, `assets/img/`, `assets/video/`
