@@ -23,7 +23,7 @@ Owner: Carlo Montesanti, with Jessie. Audience: American-English-speaking travel
 5. Location: "near Canicattini Bagni" plus drive times only. The exact meeting point is shared after booking.
 6. No BBC / Netflix claims. No tours or hikes. No product promotion. No newsletter.
 7. Videos matter: show them big, never as small thumbnails.
-8. Price €150 per adult, €75 per child. 9:30 AM to 3:30/4:00 PM. Up to 25 guests.
+8. Price €150 per adult, €75 per child. 9:30 AM to 3:30/4:00 PM. Do not state the number of guests anywhere on the site.
 9. Use only the farm's own photos and videos.
 
 See `TODO.md` for what is still open.
