@@ -424,3 +424,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .game-clip { border-radius: 6px; overflow: hidden; }
 .game-clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 @media (min-width: 900px) { .game > .game-clip { grid-column: 1; grid-row: 1 / span 6; align-self: center; } }
+
+/* ---------- header, refined: centered logo between two quiet rows, fewer lines, less height ---------- */
+.topbar .nav-top { border-bottom: 0; }
+.topbar .nav-low { border-top: 0; }
+.topbar .nav a, .topbar .nav button { padding: 13px 0 12px; position: relative; }
+.topbar .nav a[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 7px; height: 1px; background: var(--ink); }
+.topbar .brand-row { justify-content: center; padding: 4px 0 6px; }
+.topbar .brand { flex-direction: column; gap: 8px; text-align: center; }
+.topbar .brand img { width: 60px; height: 60px; }
+.topbar .brand span { font-size: 15px; letter-spacing: 0.26em; font-weight: 500; }
+.menu { text-align: center; padding: 6px 0 14px; }
+.menu a { font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 0; }
+.menu a[aria-current="page"] { font-weight: 700; }

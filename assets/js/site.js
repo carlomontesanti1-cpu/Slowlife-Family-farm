@@ -293,4 +293,10 @@
     }
     EVENTS.forEach(function (t) { document.addEventListener(t, tryAll, true); });
   }
+  // Menu: mark the page the visitor is on.
+  var here = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.topbar .nav a, .menu a').forEach(function (a) {
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('#') === -1 && href === here) a.setAttribute('aria-current', 'page');
+  });
 })();
