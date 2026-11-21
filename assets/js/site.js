@@ -14,19 +14,36 @@
   }
 
   // YouTube films: show our own photo first, load the real player on tap.
+  // Only one film is ever heard at a time: a playing film pauses as soon as it scrolls off the
+  // screen, and when the visitor starts another film.
+  var tellYT = function (frame, func) {
+    if (frame && frame.isConnected && frame.contentWindow) {
+      frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
+    }
+  };
+  var pauseOtherFilms = function (except) {
+    document.querySelectorAll('.yt.is-playing iframe').forEach(function (fr) { if (fr !== except) tellYT(fr, 'pauseVideo'); });
+  };
+  var offScreenWatcher = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) tellYT(en.target.querySelector('iframe'), 'pauseVideo');
+    });
+  }, { threshold: 0.2 }) : null;
   document.querySelectorAll('a.yt[data-yt]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
+      pauseOtherFilms(null);
       var box = document.createElement('div');
       box.className = a.className + ' is-playing';
       box.style.aspectRatio = a.dataset.ratio || '16 / 9';
       var f = document.createElement('iframe');
-      f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&playsinline=1&rel=0';
+      f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&playsinline=1&rel=0&enablejsapi=1';
       f.title = a.getAttribute('aria-label') || 'Film from Slowlife Family Farm';
       f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
       f.allowFullscreen = true;
       box.appendChild(f);
       a.replaceWith(box);
+      if (offScreenWatcher) offScreenWatcher.observe(box);
     });
   });
 
@@ -250,10 +267,14 @@
         if (allowed) EVENTS.forEach(function (t) { document.removeEventListener(t, tryAll, true); });
       });
     };
+    document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a.yt')) { soundClips.forEach(function (b) { state.get(b).userMuted = true; syncClip(b); }); }
+    }, true);
     soundClips.forEach(function (box) {
       state.set(box, { visible: false, userMuted: false });
       box.addEventListener('click', function () {
         var st = state.get(box), v = box.querySelector('video');
+        if (typeof pauseOtherFilms === 'function') pauseOtherFilms(null);
         st.visible = true;
         st.userMuted = allowed ? !v.muted : false;
         syncClip(box);
