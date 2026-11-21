@@ -408,3 +408,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .chapter video, .chapter img, .chapter .clip-sound { width: 100%; aspect-ratio: 4 / 5; }
   .chapter .clip-sound video { height: 100%; }
 }
+
+/* ---------- header in two quiet rows, like the museum site: small capitals above and below the logo ---------- */
+.topbar { gap: 0; padding-top: 0; }
+.topbar .nav { flex-wrap: nowrap; justify-content: center; gap: 0 clamp(18px, 6vw, 48px); padding: 0; overflow: visible;
+  font-size: clamp(10.5px, 2.9vw, 12px); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; }
+.topbar .nav a, .topbar .nav button { padding: 15px 0; font-weight: 500; letter-spacing: inherit; text-transform: inherit; color: var(--ink); }
+.topbar .nav a:hover { text-decoration: none; color: var(--muted); }
+.topbar .nav-top { border-top: 0; border-bottom: 1px solid var(--line); }
+.topbar .nav-low { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.topbar .brand-row { padding: 16px 0; }
+.topbar .menu { margin-top: 0; }
