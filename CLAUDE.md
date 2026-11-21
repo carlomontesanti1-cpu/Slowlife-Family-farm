@@ -4,10 +4,16 @@ Plain static site (no build step) for www.slowlifefamilyfarm.com.
 Owner: Carlo Montesanti, with Jessie. Audience: American-English-speaking travelers. Goal: send people to book.
 
 ## Files
-- `index.html` — homepage (hero film, the day in seven movements, the game, films, reviews, price, gardens, story, visit, Instagram, FAQ, contact, booking)
+- `index.html` — homepage, kept short: hero film and food-journey text, the day in seven movements, the game, price, links to the other pages, booking
+- `organic-garden.html` — the garden and its films
 - `the-old-table.html` — Back to the Old Table
+- `films.html` — films and the Instagram photo row
+- `reviews.html` — guest reviews
+- `our-story.html` — the tradition, Carlo and Jessie
+- `plan-your-visit.html` — where we are, FAQ, contact
 - `terms.html` — terms and agreements (includes photo/video consent)
 - `assets/css/site.css`, `assets/js/site.js`, `assets/img/`, `assets/video/`
+- The top strip, menu, footer and booking bar are repeated in every page: change them in all pages together.
 
 ## Standing rules
 1. "Slowlife" is always one word.
