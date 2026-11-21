@@ -146,6 +146,18 @@
       var box = btn, p;
       while ((p = box.parentElement) && (p.textContent || '').trim().length < 160 && !/reviews-(list|badge|widget)/.test(p.className || '')) box = p;
       if (box === btn) return;
+      var p0 = box, full = false;
+      while ((p0 = up(p0)) && p0 !== document.body) { if (p0.classList && p0.classList.contains('reviews-full')) { full = true; break; } }
+      if (full) {
+        // Under the first Book Now: keep the summary (rating and number of reviews) and the reviews,
+        // and make the summary a link to our Google reviews.
+        if (!box.dataset.linked) {
+          box.dataset.linked = '1';
+          box.style.cursor = 'pointer';
+          box.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); window.open(REVIEWS, '_blank', 'noopener'); }, true);
+        }
+        return;
+      }
       if (inBadge(box)) {
         // Bottom of the page: keep only the summary box, centered.
         var node = box;

@@ -112,6 +112,9 @@ section[id], header[id] { scroll-margin-top: 12px; }
 
 .google-rating { width: min(calc(100% - 2 * var(--pad)), 560px); margin: clamp(28px, 4vw, 44px) auto 0; text-align: center; }
 
+.reviews-full { padding: 0 var(--pad); margin-top: clamp(28px, 4vw, 48px); }
+.reviews-full:empty { display: none; }
+
 /* ---------- intro ---------- */
 .intro { padding: clamp(64px, 9vw, 128px) var(--pad); display: flex; flex-wrap: wrap; align-items: center; gap: 40px 64px; }
 .intro .copy { flex: 1 1 420px; display: flex; flex-direction: column; gap: 20px; }
