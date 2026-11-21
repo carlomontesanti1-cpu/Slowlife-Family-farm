@@ -200,7 +200,10 @@
     var path = e.composedPath ? e.composedPath() : [e.target];
     for (var i = 0; i < path.length; i++) {
       var n = path[i];
-      if (n && n.tagName === 'A' && /trustindex/i.test((n.getAttribute('href') || '') + (n.getAttribute('data-href') || ''))) {
+      var isTiLink = n && n.tagName === 'A' && /trustindex/i.test((n.getAttribute('href') || '') + (n.getAttribute('data-href') || ''));
+      // The "Verified by Trustindex" label stays visible, but a tap on it also goes to our Google reviews.
+      var isVerified = n && n.nodeType === 1 && (n.textContent || '').length < 60 && /verified by trustindex/i.test(n.textContent || '');
+      if (isTiLink || isVerified) {
         e.preventDefault();
         e.stopPropagation();
         window.open(REVIEWS, '_blank', 'noopener');
