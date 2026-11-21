@@ -432,7 +432,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .topbar .nav a[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 7px; height: 1px; background: var(--ink); }
 .topbar .brand-row { justify-content: center; padding: 4px 0 6px; }
 .topbar .brand { flex-direction: column; gap: 8px; text-align: center; }
-.topbar .brand img { width: 60px; height: 60px; }
+.topbar .brand img { width: 104px; height: 104px; }
 .topbar .brand span { font-size: 15px; letter-spacing: 0.26em; font-weight: 500; }
 .menu { text-align: center; padding: 6px 0 14px; }
 .menu a { font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 0; }
