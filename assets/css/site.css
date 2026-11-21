@@ -419,3 +419,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .topbar .nav-low { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .topbar .brand-row { padding: 16px 0; }
 .topbar .menu { margin-top: 0; }
+
+/* the toast clip in "The heart of the day" */
+.game-clip { border-radius: 6px; overflow: hidden; }
+.game-clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+@media (min-width: 900px) { .game > .game-clip { grid-column: 1; grid-row: 1 / span 6; align-self: center; } }
