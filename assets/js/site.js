@@ -186,14 +186,42 @@
       }
     }
   }, true);
-  // Our own clips that carry sound: tap the clip (or its label) to switch the sound on and off.
-  document.querySelectorAll('.clip-sound').forEach(function (box) {
-    var v = box.querySelector('video'), label = box.querySelector('[data-sound-toggle]');
-    if (!v || !label) return;
-    box.addEventListener('click', function () {
-      v.muted = !v.muted;
-      if (!v.muted) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-      label.textContent = v.muted ? 'Tap for sound' : 'Sound on \u00b7 tap to mute';
+  // Our own clips that carry sound. Browsers only allow sound after the visitor has touched
+  // the page, so: from the first touch anywhere, the clip on screen plays with its sound, and goes
+  // quiet when it scrolls away. Tapping the clip itself switches its sound off and on.
+  var soundClips = Array.prototype.slice.call(document.querySelectorAll('.clip-sound'));
+  if (soundClips.length) {
+    var touched = false;
+    var state = new Map(); // box -> { visible, userMuted }
+    var syncClip = function (box) {
+      var v = box.querySelector('video'), label = box.querySelector('[data-sound-toggle]'), st = state.get(box);
+      var on = touched && st.visible && !st.userMuted;
+      v.muted = !on;
+      if (on) { var p = v.play(); if (p && p.catch) p.catch(function () { v.muted = true; v.play(); }); }
+      if (label) label.textContent = on ? 'Sound on \u00b7 tap to mute' : 'Tap for sound';
+    };
+    soundClips.forEach(function (box) {
+      state.set(box, { visible: false, userMuted: false });
+      box.addEventListener('click', function () {
+        var st = state.get(box);
+        if (!touched) { touched = true; st.userMuted = false; }
+        else { st.userMuted = !box.querySelector('video').muted; }
+        st.visible = true;
+        syncClip(box);
+      });
     });
-  });
+    if ('IntersectionObserver' in window) {
+      var sio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { state.get(en.target).visible = en.isIntersecting; syncClip(en.target); });
+      }, { threshold: 0.5 });
+      soundClips.forEach(function (box) { sio.observe(box); });
+    }
+    var wake = function (e) {
+      ['click', 'touchend', 'keydown'].forEach(function (t) { document.removeEventListener(t, wake, true); });
+      if (e.target && e.target.closest && e.target.closest('.clip-sound')) return; // handled by the clip's own tap
+      touched = true;
+      soundClips.forEach(syncClip);
+    };
+    ['click', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, wake, true); });
+  }
 })();
