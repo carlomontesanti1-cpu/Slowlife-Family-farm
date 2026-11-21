@@ -97,6 +97,11 @@ section[id], header[id] { scroll-margin-top: 12px; }
 /* ---------- hero ---------- */
 .hero-film { margin: 0 var(--edge); }
 .hero-film .yt img { object-position: center 30%; }
+.hero-clip { position: relative; }
+.sound-icon { position: absolute; right: 12px; bottom: 12px; width: 42px; height: 42px; border: 0; border-radius: 999px; background: rgba(17,17,17,0.55); color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.sound-icon .waves { display: none; }
+.sound-icon.is-on .waves { display: block; }
+.sound-icon.is-on .cross { display: none; }
 /* our own film, shown tall like on a phone; on wide screens it sits centered on a dark band */
 .hero-clip { border-radius: 8px; overflow: hidden; background: #111111; display: flex; justify-content: center; }
 .hero-clip video { display: block; width: 100%; height: min(82svh, calc((100vw - 2 * var(--edge)) * 16 / 9)); object-fit: cover; }
