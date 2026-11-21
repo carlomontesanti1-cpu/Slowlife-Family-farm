@@ -173,6 +173,16 @@
     }
   }
 
+  // The Google rating boxes (top strip and footer) are clickable as a whole: they open our Google reviews.
+  document.querySelectorAll('.reviews-badge, .top-rating').forEach(function (box) {
+    box.style.cursor = 'pointer';
+    box.setAttribute('role', 'link');
+    box.setAttribute('tabindex', '0');
+    var go = function () { window.open(REVIEWS, '_blank', 'noopener'); };
+    box.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); go(); }, true);
+    box.addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); });
+  });
+
   // Any link that would go to Trustindex opens our Google reviews (to read) instead.
   document.addEventListener('click', function (e) {
     var path = e.composedPath ? e.composedPath() : [e.target];
