@@ -378,3 +378,4 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .chapter { border-top: 0; padding-top: 0; }
   .chapters { border-top: 1px solid var(--line); padding-top: 22px; }
 }
+.day-photo { aspect-ratio: 16 / 9; max-height: 640px; object-position: center 40%; }
