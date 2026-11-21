@@ -366,3 +366,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .chapters { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin: 0 calc(-1 * var(--pad)); padding: 0 var(--pad) 12px; }
   .chapter { flex: 0 0 84%; scroll-snap-align: center; }
 }
+
+/* ---------- the seven movements: a calm heading ---------- */
+.day-head { border-top: 1px solid var(--ink); padding-top: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; gap: 14px; }
+.day-head .eyebrow { font-size: 12.5px; }
+.day-sub { font-size: 18px; line-height: 1.5; color: var(--muted); max-width: 520px; }
+@media (max-width: 700px) {
+  .day { gap: 22px; }
+  .swipe-hint { margin: 0; text-align: right; font-size: 12px; font-weight: 500; letter-spacing: 0.16em; color: var(--muted); }
+  .swipe-hint span { display: inline-block; margin-left: 6px; font-size: 16px; letter-spacing: 0; }
+  .chapter { border-top: 0; padding-top: 0; }
+  .chapters { border-top: 1px solid var(--line); padding-top: 22px; }
+}
