@@ -400,3 +400,4 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .price > img { max-height: 520px; }
   .day-photo { max-height: 520px; }
 }
+.journey-photo { aspect-ratio: 4 / 3; }
