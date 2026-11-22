@@ -504,3 +504,6 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
   .bookbar .info { font-size: 13px; }
   .journey li { padding-left: 36px; font-size: 16px; }
 }
+
+/* toast clip under the arts heading on The Old Table */
+.arts-clip { margin: 22px 0 26px; max-width: 880px; }
