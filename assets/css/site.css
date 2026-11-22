@@ -538,3 +538,12 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
   .garden-grid .yt { grid-column: 1; grid-row: 1 / span 2; height: 100%; }
 }
 @media (min-width: 900px) { .garden-grid .yt { aspect-ratio: auto !important; } .garden-grid .yt img { width: 100%; height: 100%; max-height: none; object-fit: cover; } }
+
+/* The Sunday Lunch page */
+.sunday .g-text .eyebrow { margin: 0; }
+.sl-clip { border-radius: 8px; overflow: hidden; width: 100%; min-width: 0; }
+.sl-clip video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.sl-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.sl-more, .day-more { align-self: flex-start; justify-self: start; }
+.day-more { margin-top: 24px; }
+@media (min-width: 900px) { .sunday .sl-clip, .sunday .sl-photo { max-width: 520px; justify-self: center; } }

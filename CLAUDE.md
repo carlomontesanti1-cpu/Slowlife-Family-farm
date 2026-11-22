@@ -5,6 +5,7 @@ Owner: Carlo Montesanti, with Jessie. Audience: American-English-speaking travel
 
 ## Files
 - `index.html` — homepage, kept short: hero film and food-journey text, the day in seven movements, the game, price, links to the other pages, booking
+- `the-sunday-lunch.html` — the day in seven movements, price at a glance
 - `organic-garden.html` — the garden and its films
 - `the-old-table.html` — Back to the Old Table
 - `films.html` — films and the Instagram photo row
