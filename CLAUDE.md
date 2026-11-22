@@ -25,5 +25,6 @@ Owner: Carlo Montesanti, with Jessie. Audience: American-English-speaking travel
 7. Videos matter: show them big, never as small thumbnails.
 8. Price €150 per adult, €75 per child. 9:30 AM to 3:30/4:00 PM. Do not state the number of guests anywhere on the site.
 9. Use only the farm's own photos and videos.
+10. Everything must be responsive, always. Every photo, video, text block, menu or section that is added or changed has to work from a 320px phone to a 1920px monitor: no sideways scrolling, no clipped or overlapping text, no media wider than its frame. Check at phone, tablet and desktop widths before publishing.
 
 See `TODO.md` for what is still open.
