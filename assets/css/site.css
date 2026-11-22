@@ -507,3 +507,12 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 
 /* toast clip under the arts heading on The Old Table */
 .arts-clip { margin: 22px 0 26px; max-width: 880px; }
+
+/* garden page: teaching text, cabbage clip, photo gallery */
+.garden-new-clip { border-radius: 8px; overflow: hidden; max-width: 720px; width: 100%; }
+.garden-new-clip video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.garden-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.garden-gallery img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; min-width: 0; }
+.garden-gallery img.wide { grid-column: 1 / -1; aspect-ratio: 5 / 4; }
+@media (min-width: 700px) { .garden-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } .garden-gallery img.wide { aspect-ratio: 16 / 9; object-position: 50% 30%; } }
+@media (min-width: 1100px) { .garden-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); } .garden-gallery img.wide { grid-column: span 2; aspect-ratio: auto; height: 100%; } }
