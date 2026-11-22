@@ -547,3 +547,16 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 .sl-more, .day-more { align-self: flex-start; justify-self: start; }
 .day-more { margin-top: 24px; }
 @media (min-width: 900px) { .sunday .sl-clip, .sunday .sl-photo { max-width: 520px; justify-self: center; } }
+
+/* Old Table: origins, three short steps */
+.origins { display: flex; flex-direction: column; flex-wrap: nowrap; gap: 24px; }
+.origins > .eyebrow { margin: 0; }
+.origins h2 { flex: none; max-width: 900px; text-wrap: balance; margin: 0; }
+.origins .why-photo { flex: none; width: 100%; }
+.origin-steps { display: grid; grid-template-columns: minmax(0, 1fr); }
+.origin-step { border-top: 1px solid var(--ink); padding: 22px 0 26px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.origin-k { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.origin-step h3 { margin: 0; font-size: clamp(22px, 2.2vw, 28px); font-weight: 300; line-height: 1.2; letter-spacing: -.01em; text-wrap: balance; }
+.origin-step p { margin: 0; font-size: 17px; line-height: 1.6; color: var(--text); }
+.origin-close { margin: 0; border-top: 1px solid var(--ink); padding-top: 26px; font-size: clamp(22px, 2.6vw, 34px); font-weight: 300; line-height: 1.3; letter-spacing: -.01em; max-width: 980px; text-wrap: balance; }
+@media (min-width: 900px) { .origin-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; } .origins { gap: 36px; } }
