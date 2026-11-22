@@ -466,3 +466,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .why h2 { flex: 1 1 100%; }
 .why-photo { flex: 1 1 100%; aspect-ratio: 16 / 10; max-height: 640px; }
 .why .copy { flex: 1 1 100%; }
+
+/* The Old Table: less empty space between "Why the table" and the music section */
+.why { padding-bottom: clamp(20px, 3vw, 40px); }
+.why + .arts { padding-top: clamp(28px, 4vw, 56px); }
