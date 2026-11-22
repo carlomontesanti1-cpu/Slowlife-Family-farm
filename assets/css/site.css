@@ -460,3 +460,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .footer-c .funded { margin-top: 26px; align-items: center; padding: 0; color: var(--muted); font-size: 13px; }
 .footer-c .funded img { height: 72px; }
 .footer-c .legal { margin-top: 30px; font-size: 12.5px; color: var(--muted); line-height: 1.9; }
+
+/* The Old Table: photo under "Why the table" */
+.why { padding-top: clamp(24px, 4vw, 56px); }
+.why h2 { flex: 1 1 100%; }
+.why-photo { flex: 1 1 100%; aspect-ratio: 16 / 10; max-height: 640px; }
+.why .copy { flex: 1 1 100%; }
