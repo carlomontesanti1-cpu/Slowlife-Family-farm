@@ -381,7 +381,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .day-photo { aspect-ratio: 16 / 9; max-height: 640px; object-position: center 40%; }
 
 /* ---------- wide screens: calmer, two-column layouts ---------- */
-@media (min-width: 900px) {
+@media (min-width: 700px) {
   /* first screen: the film on the left, the invitation on the right (no black band) */
   #top { display: grid; grid-template-columns: minmax(300px, 36%) 1fr; column-gap: clamp(32px, 5vw, 80px); align-items: start; }
   #top > .hero-film, #top > .hero-text { margin-top: 28px; }
@@ -423,7 +423,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 /* the toast clip in "The heart of the day" */
 .game-clip { border-radius: 6px; overflow: hidden; }
 .game-clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
-@media (min-width: 900px) { .game > .game-clip { grid-column: 1; grid-row: 1 / span 6; align-self: center; } }
+@media (min-width: 700px) { .game > .game-clip { grid-column: 1; grid-row: 1 / span 6; align-self: center; } }
 
 /* ---------- header, refined: centered logo between two quiet rows, fewer lines, less height ---------- */
 .topbar .nav-top { border-bottom: 0; }
@@ -439,10 +439,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .menu a[aria-current="page"] { font-weight: 700; }
 
 /* phones: the main title is centered, so "Lunch" sits in the middle under "The Sicilian Sunday" */
-@media (max-width: 899px) {
+@media (max-width: 699px) {
   .hero-text .title { text-align: center; align-items: center; }
   .hero-text .title .h-xl { text-wrap: balance; }
-  .hero-text .title .eyebrow { font-size: clamp(9.5px, 2.75vw, 12px); letter-spacing: 0.14em; white-space: nowrap; }
+  .hero-text .title .eyebrow { font-size: clamp(10.5px, 2.75vw, 12px); letter-spacing: 0.14em; text-wrap: balance; }
 }
 
 /* ---------- footer: centered, with its own menu, to match the header ---------- */
@@ -470,3 +470,37 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 /* The Old Table: less empty space between "Why the table" and the music section */
 .why { padding-bottom: clamp(20px, 3vw, 40px); }
 .why + .arts { padding-top: clamp(28px, 4vw, 56px); }
+
+/* ================= responsive pass: every screen from small phones to large monitors ================= */
+/* large screens: keep the content in a centered column instead of stretching edge to edge */
+:root { --max: 1320px; }
+#top, body > .topbar, main, .footer { max-width: var(--max); margin-left: auto; margin-right: auto; }
+.footer-c { margin-top: clamp(40px, 6vw, 72px); }
+.bookbar { padding-left: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad))); padding-right: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad))); }
+@media (min-width: 1400px) {
+  body { font-size: 17px; }
+  .section.soft, .contact { border-radius: 8px; }
+}
+/* media never overflows its box, whatever its natural size */
+img, video, iframe { max-width: 100%; }
+video { height: auto; }
+/* long words and email addresses wrap instead of pushing the page wide */
+p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
+/* tablets: two tidy columns for the seven movements */
+@media (min-width: 701px) and (max-width: 1099px) { .chapters { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .chapters { grid-template-columns: repeat(4, 1fr); } .chapter h3 { font-size: clamp(22px, 1.9vw, 28px); min-height: 2.3em; } }
+/* The Old Table, wide screens: words on the left, the film on the right */
+@media (min-width: 900px) {
+  .page-head h1 { white-space: normal; font-size: clamp(48px, 5.4vw, 88px); }
+  .page-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); column-gap: clamp(32px, 5vw, 80px); align-items: center; }
+  .page-head > * { grid-column: 1; }
+  .page-head > .page-film { grid-column: 2; grid-row: 1 / span 4; margin: 0; }
+  .ends .copy { max-width: 560px; }
+  .why .copy { max-width: 760px; }
+}
+/* small phones */
+@media (max-width: 360px) {
+  .btn { padding: 14px 24px; }
+  .bookbar .info { font-size: 13px; }
+  .journey li { padding-left: 36px; font-size: 16px; }
+}
