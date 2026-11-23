@@ -568,3 +568,4 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 /* Google rating strip above the Instagram row */
 .mid-rating { height: 64px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: clamp(24px, 4vw, 48px) var(--pad) 0; border-radius: 8px; cursor: pointer; }
 .mid-rating > * { zoom: 0.9; }
+.origin-img { display: block; width: 100%; height: auto; margin: 6px 0; }
