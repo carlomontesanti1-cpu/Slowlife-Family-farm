@@ -48,8 +48,8 @@ section[id], header[id] { scroll-margin-top: 12px; }
 .stack { display: flex; flex-direction: column; }
 
 /* ---------- slim Google rating strip at the very top of every page ---------- */
-.top-rating { height: 42px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--line); background: #FFFFFF; }
-.top-rating > * { zoom: 0.62; margin: 0 !important; }
+.top-rating { height: 56px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--line); background: #FFFFFF; }
+.top-rating > * { zoom: 0.78; margin: 0 !important; }
 .top-rating:empty { display: none; }
 
 /* ---------- top bar and menu ---------- */
