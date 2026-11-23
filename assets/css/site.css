@@ -573,3 +573,10 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 .origin-img { aspect-ratio: 16 / 9; object-fit: cover; }
 .origin-clip { border-radius: 8px; overflow: hidden; width: 100%; }
 .origin-clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* live booking calendar (TicketingHub) */
+.calendar { display: flex; flex-direction: column; gap: 12px; margin: 32px 0 20px; min-width: 0; }
+.calendar h3, .calendar p { margin: 0; }
+.calendar-frame { display: block; width: 100%; max-width: 520px; height: 760px; border: 1px solid var(--line); border-radius: 12px; background: #FFFFFF; }
+.calendar-help { font-size: 14px; color: var(--muted); }
+.calendar-help a { color: inherit; text-decoration: underline; }
