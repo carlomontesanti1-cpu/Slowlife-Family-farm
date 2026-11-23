@@ -562,3 +562,5 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 @media (min-width: 900px) { .origin-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; } .origins { gap: 36px; } }
 
 .sl-film { width: 100%; min-width: 0; }
+.sl-top-film { width: 100%; }
+@media (min-width: 900px) { .sl-top-film { max-width: 560px; } }
