@@ -581,3 +581,10 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 .calendar-help { font-size: 14px; color: var(--muted); }
 .calendar-help a { color: inherit; text-decoration: underline; }
 .sound-icon { width: 34px; height: 34px; right: 10px; bottom: 10px; background: rgba(17,17,17,0.35); opacity: .85; } .sound-icon svg { width: 16px; height: 16px; }
+
+/* Airbnb and Tripadvisor badges under the live Google rating */
+.other-ratings { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; margin: 14px var(--pad) 0; }
+.rate-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; line-height: 1.2; color: var(--ink); text-decoration: none; max-width: 100%; }
+.rate-badge strong { font-weight: 600; }
+.rate-badge .star { width: 15px; height: 15px; flex: none; fill: #e0a526; }
+a.rate-badge:hover { border-color: var(--ink); }
