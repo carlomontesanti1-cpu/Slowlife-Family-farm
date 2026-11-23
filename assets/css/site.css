@@ -600,3 +600,5 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
   .rate-text strong { font-size: 14px; }
   .rate-text span { font-size: 12px; }
 }
+.rate-mark img { width: auto; height: 30px; }
+@media (max-width: 420px) { .rate-mark img { height: 24px; } }
