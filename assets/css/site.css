@@ -571,3 +571,5 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 .origin-img { display: block; width: 100%; height: auto; margin: 6px 0; }
 .origin-photo { aspect-ratio: 16 / 9; object-fit: cover; }
 .origin-img { aspect-ratio: 16 / 9; object-fit: cover; }
+.origin-clip { border-radius: 8px; overflow: hidden; width: 100%; }
+.origin-clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
