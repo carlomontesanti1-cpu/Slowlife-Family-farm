@@ -71,7 +71,11 @@
         var fr = a.querySelector('.yt-bg');
         if (!fr) return;
         if (soundOn && a === best) { say(fr, 'unMute'); say(fr, 'setVolume', [100]); say(fr, 'playVideo'); }
-        else { say(fr, 'mute'); }
+        else {
+          say(fr, 'mute');
+          // on screen: keep playing quietly; scrolled past: stop
+          if ((seen.get(a) || 0) > 0) say(fr, 'playVideo'); else say(fr, 'pauseVideo');
+        }
       });
     };
     var startFilm = function (a) {

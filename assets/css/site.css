@@ -580,3 +580,4 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 .calendar-frame { display: block; width: 100%; max-width: 520px; height: 760px; border: 1px solid var(--line); border-radius: 12px; background: #FFFFFF; }
 .calendar-help { font-size: 14px; color: var(--muted); }
 .calendar-help a { color: inherit; text-decoration: underline; }
+.sound-icon { width: 34px; height: 34px; right: 10px; bottom: 10px; background: rgba(17,17,17,0.35); opacity: .85; } .sound-icon svg { width: 16px; height: 16px; }
