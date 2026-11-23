@@ -582,9 +582,21 @@ p, li, h1, h2, h3, a, figcaption, blockquote { overflow-wrap: break-word; }
 .calendar-help a { color: inherit; text-decoration: underline; }
 .sound-icon { width: 34px; height: 34px; right: 10px; bottom: 10px; background: rgba(17,17,17,0.35); opacity: .85; } .sound-icon svg { width: 16px; height: 16px; }
 
-/* Airbnb and Tripadvisor badges under the live Google rating */
-.other-ratings { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 14px; margin: 14px var(--pad) 0; }
-.rate-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; line-height: 1.2; color: var(--ink); text-decoration: none; max-width: 100%; }
-.rate-badge strong { font-weight: 600; }
-.rate-badge .star { width: 15px; height: 15px; flex: none; fill: #e0a526; }
-a.rate-badge:hover { border-color: var(--ink); }
+/* Airbnb and Tripadvisor: one card, two halves side by side, matching the Google strip */
+.other-ratings { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); margin: 12px var(--pad) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); border-radius: 8px; }
+.rate-badge { display: flex; align-items: center; justify-content: center; gap: 12px; min-width: 0; padding: 14px 10px; color: var(--ink); text-decoration: none; }
+.rate-badge + .rate-badge { border-left: 1px solid var(--line); }
+.rate-mark { flex: none; display: grid; place-items: center; width: 34px; height: 34px; }
+.rate-mark img { display: block; max-width: 100%; max-height: 100%; }
+.rate-mark .star { width: 20px; height: 20px; fill: #e0a526; }
+.rate-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.rate-text strong { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+.rate-text span { font-size: 13px; color: var(--muted); }
+a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 420px) {
+  .rate-badge { gap: 8px; padding: 12px 6px; }
+  .rate-mark { width: 26px; height: 26px; }
+  .rate-mark .star { width: 16px; height: 16px; }
+  .rate-text strong { font-size: 14px; }
+  .rate-text span { font-size: 12px; }
+}
