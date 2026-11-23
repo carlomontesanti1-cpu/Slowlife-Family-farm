@@ -604,3 +604,10 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 @media (max-width: 420px) { .rate-mark img { height: 24px; } }
 .rate-mark img.rate-round { height: 32px; }
 @media (max-width: 420px) { .rate-mark img.rate-round { height: 26px; } }
+/* Live Airbnb rating (Trustindex). The typed text shows until the live one has loaded. */
+.ab-live { position: absolute; left: -9999px; top: 0; width: 240px; visibility: hidden; height: 40px; overflow: hidden; display: flex; align-items: center; }
+.ab-live > * { zoom: 0.6; margin: 0 !important; }
+.rate-badge.is-live .ab-live { position: static; width: auto; min-width: 0; visibility: visible; }
+.rate-badge.is-live .ab-fallback { display: none; }
+@media (max-width: 420px) { .ab-live > * { zoom: 0.5; } }
+.rate-badge.no-mark .rate-mark { display: none; }
