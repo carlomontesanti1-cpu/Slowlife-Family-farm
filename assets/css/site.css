@@ -658,3 +658,49 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .history-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); }
 @media (max-width: 900px) { .history-cols { grid-template-columns: minmax(0, 1fr); gap: 16px; } .history-cols p { max-width: 620px; } }
 .story .copy p + p { margin-top: -4px; }
+
+/* ===== Our Story: editorial layout ===== */
+.os-open { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; max-width: var(--max); margin: 0 auto; padding: clamp(48px, 8vw, 120px) var(--pad) var(--gap-y); }
+.os-open h1 { font-weight: 300; font-size: clamp(36px, 5.2vw, 76px); line-height: 1.03; letter-spacing: -0.035em; margin: 18px 0 clamp(20px, 3vw, 32px); }
+.os-stand { font-size: clamp(17px, 1.45vw, 20px); line-height: 1.6; color: var(--text); max-width: 34em; }
+.os-open-photo, .os-hosts-photo { margin: 0; }
+.os-open-photo img, .os-hosts-photo img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 4px; }
+.os-open-photo img { aspect-ratio: 4 / 5; }
+
+.os-chapter { display: grid; grid-template-columns: clamp(48px, 9vw, 140px) minmax(0, 1fr); gap: 0 clamp(16px, 3vw, 48px); max-width: 1040px; margin: 0 auto; padding: 0 var(--pad) var(--gap-y); }
+.os-num { font-weight: 300; font-size: clamp(28px, 3.4vw, 48px); line-height: 1; color: var(--muted); letter-spacing: 0.02em; border-top: 1px solid var(--ink); padding-top: 14px; }
+.os-body { border-top: 1px solid var(--line); padding-top: 18px; }
+.os-chapter h2, .os-hosts h2 { font-weight: 300; font-size: clamp(30px, 3.8vw, 54px); line-height: 1.06; letter-spacing: -0.03em; margin: 14px 0 clamp(18px, 2.6vw, 30px); max-width: 16ch; }
+.os-body p, .os-profile p, .os-honor p { font-size: 17px; line-height: 1.7; color: var(--text); max-width: 36em; }
+.os-body p + p { margin-top: 16px; }
+.os-drop::first-letter { float: left; font-weight: 300; font-size: 4.1em; line-height: 0.85; padding: 6px 12px 0 0; color: var(--ink); }
+
+.os-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: var(--max); margin: 0 auto var(--gap-y); padding: 0 var(--pad); }
+.os-facts div { border-top: 1px solid var(--ink); padding: 18px 16px 0 0; }
+.os-facts strong { display: block; font-weight: 300; font-size: clamp(26px, 3vw, 42px); letter-spacing: -0.02em; line-height: 1.1; }
+.os-facts span { display: block; margin-top: 8px; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+.os-quote { margin: 0 auto var(--gap-y); padding: 0 var(--pad); max-width: 980px; text-align: center; }
+.os-quote p { font-weight: 300; font-size: clamp(28px, 4.2vw, 58px); line-height: 1.15; letter-spacing: -0.025em; color: var(--ink); }
+
+.os-hosts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; max-width: var(--max); margin: 0 auto; padding: 0 var(--pad) var(--gap-y); }
+.os-hosts-photo { position: sticky; top: 96px; }
+.os-hosts-photo img { aspect-ratio: 4 / 5; object-position: 45% 50%; }
+.os-hosts-text .os-num { margin-bottom: 18px; width: clamp(48px, 9vw, 140px); }
+.os-profile { border-top: 1px solid var(--line); padding: 20px 0 22px; }
+.os-profile h3 { font-size: 12.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; color: var(--ink); }
+.os-honor { background: var(--soft); border-radius: 4px; padding: clamp(20px, 2.6vw, 32px); margin: 8px 0 26px; }
+.os-honor .eyebrow { margin-bottom: 10px; }
+.os-sign { font-weight: 300; font-size: clamp(20px, 2vw, 26px); line-height: 1.4; letter-spacing: -0.01em; color: var(--ink); max-width: 24em; }
+
+@media (max-width: 860px) {
+  .os-open, .os-hosts { grid-template-columns: minmax(0, 1fr); }
+  .os-open-photo { order: -1; }
+  .os-hosts-photo { position: static; }
+  .os-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+}
+@media (max-width: 520px) {
+  .os-chapter { grid-template-columns: minmax(0, 1fr); }
+  .os-chapter .os-num { border-top: 0; padding-top: 0; margin-bottom: 10px; font-size: 26px; }
+  .os-facts span { letter-spacing: 0.1em; font-size: 11.5px; }
+}
