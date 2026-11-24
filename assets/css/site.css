@@ -640,3 +640,8 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .reviews-badge .ti-widget, .reviews-badge .ti-widget-container, .reviews-badge .ti-header, .reviews-badge .ti-footer,
 .reviews-badge [class*="ti-"] { background-color: transparent !important; box-shadow: none !important; border-color: transparent !important; }
 .reviews-badge + .also-on { margin-top: 6px; }
+
+/* Our Story: the main photo comes first, on the left on wide screens and on top on phones */
+.intro img.story-main { order: -1; aspect-ratio: 960 / 1146; object-fit: cover; max-width: 520px; }
+.intro:has(.story-main) { padding-top: clamp(24px, 4vw, 56px); }
+@media (max-width: 760px) { .intro img.story-main { flex-basis: 100%; max-width: none; } }
