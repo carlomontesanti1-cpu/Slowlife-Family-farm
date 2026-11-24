@@ -704,3 +704,5 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
   .os-chapter .os-num { border-top: 0; padding-top: 0; margin-bottom: 10px; font-size: 26px; }
   .os-facts span { letter-spacing: 0.1em; font-size: 11.5px; }
 }
+.origin-img.origin-portrait { aspect-ratio: 16 / 9; object-position: 60% 28%; }
+@media (max-width: 899px) { .origin-img.origin-portrait { aspect-ratio: 4 / 5; object-position: 55% 30%; } }
