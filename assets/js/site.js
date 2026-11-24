@@ -155,32 +155,6 @@
       if (++n > 20) clearInterval(timer);
     }, 700);
   })();
-  var AIRBNB = 'https://www.airbnb.com/experiences/236772';
-  // Show the live Airbnb rating once it has actually drawn something; until then the typed one stays.
-  document.querySelectorAll('.ab-live').forEach(function (slot) {
-    var badge = slot.closest('.rate-badge'), n = 0;
-    // Shrink the live rating so it always fits its half of the card, on any screen.
-    var fit = function () {
-      var kid = Array.prototype.find.call(slot.children, function (c) { return c.tagName !== 'SCRIPT'; });
-      if (!kid) return;
-      kid.style.zoom = 1;
-      var mark = badge.querySelector('.rate-mark');
-      var cs = getComputedStyle(badge);
-      var room = badge.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - parseFloat(cs.columnGap || cs.gap || 0) - (mark && !badge.classList.contains('no-mark') ? mark.offsetWidth : 0);
-      room *= 0.94;
-      var need = kid.scrollWidth || kid.getBoundingClientRect().width;
-      var z = Math.min(0.62, room / need);
-      // On very narrow phones, drop our small logo to give the live rating more room.
-      if (z < 0.45 && mark && !badge.classList.contains('no-mark')) { badge.classList.add('no-mark'); return fit(); }
-      if (z >= 0.55 && badge.classList.contains('no-mark') && mark) { badge.classList.remove('no-mark'); return fit(); }
-      kid.style.zoom = Math.max(0.3, z);
-    };
-    var check = setInterval(function () {
-      var drawn = Array.prototype.some.call(slot.children, function (c) { return c.tagName !== 'SCRIPT' && c.getBoundingClientRect().height > 8; });
-      if (drawn) { badge.classList.add('is-live'); clearInterval(check); fit(); window.addEventListener('resize', fit); }
-      else if (++n > 40) clearInterval(check);
-    }, 500);
-  });
   var mainEl = document.querySelector('main');
 
   var walk = function (root, cb) {
@@ -206,7 +180,6 @@
     walk(document, function (el) {
       if (el.children.length || !/^\s*write\s+a\s+review\s*$/i.test(el.textContent || '')) return;
       if (!el.closest('.reviews-widget') && el.closest('main > section:not(#reviews), header, footer')) return; // never touch our own page text
-      if (el.closest('.ab-live')) { hide(el.closest('a, button') || el); return; } // Airbnb rating: only hide its write button
       // 1. Hide the "Write a review" button itself.
       var btn = el.closest('a, button') || el;
       hide(btn);
@@ -266,13 +239,6 @@
   // Any link that would go to Trustindex opens our Google reviews (to read) instead.
   document.addEventListener('click', function (e) {
     var path = e.composedPath ? e.composedPath() : [e.target];
-    for (var j = 0; j < path.length; j++) {
-      if (path[j].classList && path[j].classList.contains('ab-live')) {
-        e.preventDefault(); e.stopPropagation();
-        window.open(AIRBNB, '_blank', 'noopener');
-        return;
-      }
-    }
     for (var i = 0; i < path.length; i++) {
       var n = path[i];
       var isTiLink = n && n.tagName === 'A' && /trustindex/i.test((n.getAttribute('href') || '') + (n.getAttribute('data-href') || ''));
