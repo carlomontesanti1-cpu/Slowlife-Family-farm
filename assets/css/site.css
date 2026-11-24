@@ -642,3 +642,6 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 
 /* One platform left in the card: center it */
 .other-ratings { grid-template-columns: minmax(0, 1fr); }
+
+/* Garden: one large portrait photo, shown whole */
+.g-feature { display: block; width: 100%; max-width: 760px; height: auto; aspect-ratio: 1050 / 1400; object-fit: cover; margin: clamp(32px, 5vw, 64px) auto; }
