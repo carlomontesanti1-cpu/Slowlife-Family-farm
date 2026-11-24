@@ -135,6 +135,26 @@
   // We cannot edit the widget itself, so we tidy it after it loads. This works whether
   // the widget sits in the page or inside a shadow root, and does not rely on its class names.
   var REVIEWS = 'https://search.google.com/local/reviews?placeid=ChIJKTmjqG7PExMRBcpVudgLpWw';
+
+  // Footer Google rating: clear Google's gray box (also inside the widget's own shadow DOM), so it sits on white.
+  (function () {
+    var boxes = document.querySelectorAll('.reviews-badge'); if (!boxes.length) return;
+    var clear = function (root) {
+      var all = root.querySelectorAll('*');
+      for (var i = 0; i < all.length; i++) {
+        var el = all[i], bg = getComputedStyle(el).backgroundColor;
+        if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent' && el.tagName !== 'IMG') {
+          el.style.setProperty('background-color', 'transparent', 'important');
+          el.style.setProperty('box-shadow', 'none', 'important');
+        }
+        if (el.shadowRoot) clear(el.shadowRoot);
+      }
+    };
+    var n = 0, timer = setInterval(function () {
+      boxes.forEach(clear);
+      if (++n > 20) clearInterval(timer);
+    }, 700);
+  })();
   var AIRBNB = 'https://www.airbnb.com/experiences/236772';
   // Show the live Airbnb rating once it has actually drawn something; until then the typed one stays.
   document.querySelectorAll('.ab-live').forEach(function (slot) {

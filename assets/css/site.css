@@ -634,3 +634,9 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .page-head + .pad-section, .page-head + .section { padding-top: var(--gap-y); }
 .section.soft + .mid-rating, .place + .mid-rating, .contact + .mid-rating, .films + .mid-rating { margin-top: var(--gap-y); }
 .other-ratings + .section.flush-top { padding-top: var(--gap-y); }
+
+/* Footer Google rating: white with a thin rounded line, like the rating cards, not Google's gray box */
+.reviews-badge { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 18px 0 14px; }
+.reviews-badge .ti-widget, .reviews-badge .ti-widget-container, .reviews-badge .ti-header, .reviews-badge .ti-footer,
+.reviews-badge [class*="ti-"] { background-color: transparent !important; box-shadow: none !important; border-color: transparent !important; }
+.reviews-badge + .also-on { margin-top: 6px; }
