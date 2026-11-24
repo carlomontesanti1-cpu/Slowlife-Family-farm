@@ -706,3 +706,6 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 }
 .origin-img.origin-portrait { aspect-ratio: 16 / 9; object-position: 60% 28%; }
 @media (max-width: 899px) { .origin-img.origin-portrait { aspect-ratio: 4 / 5; object-position: 55% 30%; } }
+.origin-why { border-top: 1px solid var(--ink); padding-top: 22px; display: flex; flex-direction: column; gap: 16px; }
+.origin-why .origin-close { border-top: 0; padding-top: 0; }
+.origin-why-body { font-size: 17px; line-height: 1.65; color: var(--text); max-width: 40em; }
