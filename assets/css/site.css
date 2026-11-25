@@ -766,3 +766,14 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .seat-panel .yt { width: 100%; max-width: 440px; margin-top: 12px; }
 .seat-panel .yt img { max-height: none; }
 .why + .seats, .guest-words + .seats { padding-top: clamp(28px, 4vw, 56px); }
+/* seats sit between the words and the film */
+.seat-card { display: flex; flex-direction: column; gap: clamp(16px, 2.4vw, 24px); padding: clamp(22px, 4vw, 40px) clamp(12px, 4vw, 44px); }
+.seat-words { min-height: 8.6em; display: flex; flex-direction: column; justify-content: center; }
+.seat-card .seat-row { gap: 14px 4px; }
+.seat-card .seat-ring { box-shadow: inset 0 0 0 9px var(--soft), inset 0 0 0 10px var(--line); width: clamp(40px, 11vw, 54px); }
+.seat-card .seat.is-on .seat-ring { box-shadow: inset 0 0 0 9px var(--soft), inset 0 0 0 10px var(--ink), 0 0 0 6px #fff; }
+.seat-film { display: flex; justify-content: center; }
+.seat-film[hidden] { display: none; }
+.seat-film .yt { width: 100%; max-width: 440px; }
+.seat-film .yt img { max-height: none; }
+.seat-films:not(:has(.seat-film:not([hidden]))) { display: none; }

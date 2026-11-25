@@ -330,7 +330,7 @@
   var wrap = document.querySelector('.seat-table');
   if (!wrap) return;
   var seats = wrap.querySelectorAll('.seat');
-  var panels = wrap.querySelectorAll('.seat-panel');
+  var panels = wrap.querySelectorAll('.seat-panel, .seat-film');
   seats.forEach(function (b) {
     b.addEventListener('click', function () {
       var key = b.getAttribute('data-seat');
