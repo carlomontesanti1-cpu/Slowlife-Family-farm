@@ -9,7 +9,8 @@ Owner: Carlo Montesanti, with Jessie. Audience: American-English-speaking travel
 - `organic-garden.html` — the garden and its films
 - `the-old-table.html` — Back to the Old Table
 - `films.html` — films and the Instagram photo row (not linked from the menus; Carlo removed it)
-- `reviews.html` — guest reviews
+- `cook-with-us.html` — Cook with us: the cooking, in six steps (in the top menu)
+- `reviews.html` — guest reviews (not linked from the menus; Carlo removed it)
 - `our-story.html` — the tradition, Carlo and Jessie
 - `plan-your-visit.html` — where we are, FAQ, contact
 - `terms.html` — terms and agreements (includes photo/video consent)
