@@ -324,3 +324,20 @@
     if (href.indexOf('#') === -1 && href === here) a.setAttribute('aria-current', 'page');
   });
 })();
+
+/* Old Table: choose a seat */
+(function () {
+  var wrap = document.querySelector('.seat-table');
+  if (!wrap) return;
+  var card = wrap.querySelector('.seat-card');
+  var seats = wrap.querySelectorAll('.seat');
+  seats.forEach(function (b) {
+    b.addEventListener('click', function () {
+      seats.forEach(function (o) { o.classList.remove('is-on'); o.setAttribute('aria-pressed', 'false'); });
+      b.classList.add('is-on'); b.setAttribute('aria-pressed', 'true');
+      card.querySelector('h3').textContent = b.getAttribute('data-title');
+      card.querySelector('p').textContent = b.getAttribute('data-text');
+      card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
+    });
+  });
+})();
