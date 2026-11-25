@@ -731,3 +731,5 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .ends .copy p { margin-inline: auto; }
 .ends .copy .btn { align-self: center; }
 .place .place-lead { max-width: 640px; color: rgba(255,255,255,.85); margin-top: -8px; }
+.guest-words { display: flex; flex-direction: column; gap: 14px; }
+.guest-words .reviews-full { padding: 0; margin-top: 8px; max-width: 100%; overflow: hidden; }
