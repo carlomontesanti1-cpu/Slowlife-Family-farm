@@ -737,3 +737,4 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .school-cols > div { border-top: 0; padding-top: 0; }
 .school-img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; margin-bottom: 16px; }
 @media (max-width: 760px) { .school-cols, .school-cols.two { gap: 32px; } }
+.reviews .reviews-film { display: block; margin: clamp(28px, 4vw, 48px) auto 0; max-width: 480px; }
