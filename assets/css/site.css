@@ -730,3 +730,4 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .ends .copy { flex: 0 1 640px; align-items: center; }
 .ends .copy p { margin-inline: auto; }
 .ends .copy .btn { align-self: center; }
+.place .place-lead { max-width: 640px; color: rgba(255,255,255,.85); margin-top: -8px; }
