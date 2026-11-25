@@ -777,3 +777,10 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .seat-film .yt { width: 100%; max-width: 440px; }
 .seat-film .yt img { max-height: none; }
 .seat-films:not(:has(.seat-film:not([hidden]))) { display: none; }
+/* seats: row above, film first, words under it, row below */
+.seat-table > .seat-row .seat-ring { box-shadow: inset 0 0 0 9px #fff, inset 0 0 0 10px var(--line); width: clamp(44px, 12vw, 60px); }
+.seat-table > .seat-row .seat.is-on .seat-ring { box-shadow: inset 0 0 0 9px #fff, inset 0 0 0 10px var(--ink), 0 0 0 7px var(--soft); }
+.seat-table { gap: clamp(10px, 1.6vw, 16px); }
+.seat-card { padding: clamp(12px, 3vw, 32px); gap: clamp(14px, 2vw, 20px); }
+.seat-words { min-height: 0; padding: clamp(6px, 1.5vw, 12px) 6px; }
+.seat-films:not(:has(.seat-film:not([hidden]))) + .seat-words { padding-block: clamp(22px, 4vw, 40px); }
