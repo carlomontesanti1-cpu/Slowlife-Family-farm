@@ -790,3 +790,5 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .hero-every + .hero-sub { margin-top: 6px; }
 img[src*="cellar-lesson"] { object-position: 22% 50%; }
 .seat-films:has(.seat-film:not([hidden])) + .seat-words { display: none; }
+.seat-panel .seat-photo { display: block; width: 100%; max-width: 440px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 30% 50%; border-radius: 6px; margin-bottom: 8px; }
+.seat-words:has(.seat-panel:not([hidden]) .seat-photo) { padding-top: 0 !important; }
