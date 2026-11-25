@@ -708,3 +708,20 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .origin-why { border-top: 1px solid var(--ink); padding-top: 22px; display: flex; flex-direction: column; gap: 16px; }
 .origin-why .origin-close { border-top: 0; padding-top: 0; }
 .origin-why-body { font-size: 17px; line-height: 1.65; color: var(--text); max-width: 40em; }
+
+/* Old Table: the table was our school */
+.school { border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: clamp(18px, 2.4vw, 28px); }
+.school-quote { margin: 0 auto clamp(24px, 4vw, 56px); max-width: 980px; text-align: center; }
+.school-quote p { font-weight: 300; font-size: clamp(24px, 3.4vw, 46px); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
+.school-quote cite { display: block; margin-top: 14px; font-style: normal; font-size: 12.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.school h2 { margin: 0; }
+.school-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 44px); }
+.school-cols.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.school-cols > div { border-top: 1px solid var(--ink); padding-top: 14px; }
+.school-cols h3 { font-size: 12.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
+.school-cols p { font-size: 17px; line-height: 1.6; color: var(--text); }
+.school-story { background: var(--soft); border-radius: 6px; padding: clamp(22px, 3.4vw, 44px); }
+.school-story .eyebrow { margin-bottom: 12px; }
+.school-lead { font-weight: 300; font-size: clamp(21px, 2.4vw, 32px); line-height: 1.35; letter-spacing: -0.01em; color: var(--ink); max-width: 34em; }
+.school-close { font-weight: 300; font-size: clamp(24px, 3vw, 40px); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); max-width: 22em; }
+@media (max-width: 760px) { .school-cols, .school-cols.two { grid-template-columns: minmax(0, 1fr); } }
