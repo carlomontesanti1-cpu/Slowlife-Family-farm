@@ -794,7 +794,11 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 .seat-words:has(.seat-panel:not([hidden]) .seat-photo) { padding-top: 0 !important; }
 .cook .cook-note { max-width: 720px; margin-top: clamp(8px, 2vw, 20px); }
 
-/* Cook with us photo gallery */
-.cook-gallery .cook-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
-.cook-gallery .cook-grid img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
-@media (min-width: 900px) { .cook-gallery .cook-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } }
+/* Cook with us: photos between the writing */
+.cook-break { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 36px 0; }
+.cook-break img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
+.cook-break.one { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-left: auto; margin-right: auto; }
+.cook-break.one img { aspect-ratio: 1 / 1; }
+.cook-break.wide img { aspect-ratio: 3 / 2; }
+@media (max-width: 520px) { .cook-break.wide { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 900px) { .cook-break { gap: 16px; max-width: 920px; margin-left: auto; margin-right: auto; } .cook-break.one { max-width: 520px; } }
