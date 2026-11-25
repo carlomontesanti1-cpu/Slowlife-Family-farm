@@ -19,7 +19,7 @@ Owner: Carlo Montesanti, with Jessie. Audience: American-English-speaking travel
 ## Standing rules
 1. "Slowlife" is always one word.
 2. American English. Short, warm, plain sentences.
-3. Not a technical cooking class: "a food journey into Sicilian tradition". Not everything is cooked on the fire.
+3. Not a technical cooking class: "a food journey into Sicilian tradition". Frame the cooking as "the real cooking class of Italy is the Sunday lunch": a grandmother shares her best recipes, we cook 10 to 15 dishes together (wild fennel fritters among them) and run a ravioli workshop. Not everything is cooked on the fire.
 4. The ancestral table game is the heart of the day. Never explain its rules; keep it a surprise. Frame it as sharing, not wine.
 5. Location: "near Canicattini Bagni" plus drive times only. The exact meeting point is shared after booking.
 6. No BBC / Netflix claims. No tours or hikes. No product promotion. No newsletter.
