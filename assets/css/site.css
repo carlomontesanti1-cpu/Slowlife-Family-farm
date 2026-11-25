@@ -725,3 +725,8 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 .school-lead { font-weight: 300; font-size: clamp(21px, 2.4vw, 32px); line-height: 1.35; letter-spacing: -0.01em; color: var(--ink); max-width: 34em; }
 .school-close { font-weight: 300; font-size: clamp(24px, 3vw, 40px); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); max-width: 22em; }
 @media (max-width: 760px) { .school-cols, .school-cols.two { grid-template-columns: minmax(0, 1fr); } }
+/* ends section without films: centered closing */
+.ends { justify-content: center; text-align: center; }
+.ends .copy { flex: 0 1 640px; align-items: center; }
+.ends .copy p { margin-inline: auto; }
+.ends .copy .btn { align-self: center; }
