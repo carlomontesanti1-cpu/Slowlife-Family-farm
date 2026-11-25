@@ -757,3 +757,12 @@ a.rate-badge:hover strong { text-decoration: underline; text-underline-offset: 3
 @keyframes seatIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .seat-card.swap { animation: none; } }
 .seat-note { text-align: center; color: var(--muted); font-size: 16px; margin: 4px auto 0; max-width: 30em; }
+/* seats + films merged */
+.seat-card { min-height: 0; padding: clamp(24px, 4vw, 44px) clamp(16px, 4vw, 44px); display: block; }
+.seat-panel { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.seat-panel[hidden] { display: none; }
+.seat-panel.swap { animation: seatIn .35s ease; }
+@media (prefers-reduced-motion: reduce) { .seat-panel.swap { animation: none; } }
+.seat-panel .yt { width: 100%; max-width: 440px; margin-top: 12px; }
+.seat-panel .yt img { max-height: none; }
+.why + .seats, .guest-words + .seats { padding-top: clamp(28px, 4vw, 56px); }

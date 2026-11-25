@@ -329,15 +329,21 @@
 (function () {
   var wrap = document.querySelector('.seat-table');
   if (!wrap) return;
-  var card = wrap.querySelector('.seat-card');
   var seats = wrap.querySelectorAll('.seat');
+  var panels = wrap.querySelectorAll('.seat-panel');
   seats.forEach(function (b) {
     b.addEventListener('click', function () {
+      var key = b.getAttribute('data-seat');
       seats.forEach(function (o) { o.classList.remove('is-on'); o.setAttribute('aria-pressed', 'false'); });
       b.classList.add('is-on'); b.setAttribute('aria-pressed', 'true');
-      card.querySelector('h3').textContent = b.getAttribute('data-title');
-      card.querySelector('p').textContent = b.getAttribute('data-text');
-      card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
+      panels.forEach(function (p) {
+        var on = p.getAttribute('data-panel') === key;
+        if (!on) p.querySelectorAll('iframe').forEach(function (fr) {
+          try { fr.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'); } catch (e) {}
+        });
+        p.hidden = !on;
+        p.classList.toggle('swap', on);
+      });
     });
   });
 })();
