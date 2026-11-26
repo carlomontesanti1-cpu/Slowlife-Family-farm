@@ -840,3 +840,16 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 
 .visit-tagline { padding-bottom: 0; text-align: center; }
 .visit-tagline h1 { margin: 0 auto; max-width: none; white-space: nowrap; font-size: clamp(14px, 4.9vw, 56px); letter-spacing: -0.015em; }
+
+/* Food photography: single landscape break, home food band */
+.cook-break.land { grid-template-columns: minmax(0, 1fr); }
+.cook-break.land img { aspect-ratio: 3 / 2; }
+.menu-day .cook-break { margin: 28px 0; }
+.food-band { text-align: center; }
+.food-band .lead { max-width: 640px; margin: 0 auto 28px; }
+.food-band-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 1100px; margin: 0 auto 32px; }
+.food-band-grid img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; }
+.food-band-grid img:first-child { grid-column: 1 / -1; aspect-ratio: 1 / 1; }
+@media (min-width: 760px) { .food-band-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } .food-band-grid img:first-child { grid-column: auto; aspect-ratio: 4 / 5; } }
+.btn.sl-more { max-width: 100%; box-sizing: border-box; white-space: normal; text-align: center; }
+.food-band .h-lg { margin: 12px 0 20px; }
