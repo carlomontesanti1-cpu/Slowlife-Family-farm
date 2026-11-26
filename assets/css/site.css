@@ -814,3 +814,14 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 .visit-clip { max-width: 520px; justify-self: center; }
 
 .visit-night { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 55%; border-radius: 10px; margin: 20px 0 24px; }
+
+/* Menu of the day */
+.menu-day { max-width: 1000px; margin-left: auto; margin-right: auto; }
+.menu-day .menu-cols { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 28px; border-top: 1px solid rgba(0,0,0,.15); }
+.menu-day .menu-block { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,.15); }
+.menu-day .menu-block h3 { font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; margin: 0 0 8px; }
+.menu-day .menu-block p { margin: 0; }
+.menu-day .menu-note { margin-top: 24px; font-size: 15px; opacity: .8; max-width: 760px; }
+@media (min-width: 760px) { .menu-day .menu-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; } }
+.menu-day .h-lg { margin: 12px 0 20px; }
+.menu-day { scroll-margin-top: 90px; }
