@@ -839,4 +839,4 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 @media (max-width: 380px) { .topbar .nav-low { gap: 0 10px; letter-spacing: 0.08em; font-size: 10px; } }
 
 .visit-tagline { padding-bottom: 0; text-align: center; }
-.visit-tagline h1 { margin: 0 auto; max-width: 18ch; }
+.visit-tagline h1 { margin: 0 auto; max-width: none; white-space: nowrap; font-size: clamp(14px, 4.9vw, 56px); letter-spacing: -0.015em; }
