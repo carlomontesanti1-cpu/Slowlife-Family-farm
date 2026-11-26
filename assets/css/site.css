@@ -873,3 +873,4 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
   .menu-day .course-more { grid-column: 1 / -1; gap: 16px; }
   .menu-day .course.text-only { grid-template-columns: minmax(0, 1fr); }
 }
+.menu-day .menu-intro { font-size: 18px; max-width: 720px; margin: 14px 0 0; }
