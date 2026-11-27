@@ -874,3 +874,10 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
   .menu-day .course.text-only { grid-template-columns: minmax(0, 1fr); }
 }
 .menu-day .menu-intro { font-size: 18px; max-width: 720px; margin: 14px 0 0; }
+
+.os-podcast { max-width: 760px; margin: 0 auto; padding: 0 var(--pad) var(--gap-y); text-align: center; }
+.os-podcast .h-md { margin: 12px 0 18px; }
+.os-podcast .lead { margin: 0 auto 26px; }
+.os-podcast .btn { max-width: 100%; box-sizing: border-box; text-align: center; }
+.os-podcast-eps { margin: 18px 0 0; font-size: 15px; }
+.os-podcast-eps a { text-decoration: underline; text-underline-offset: 3px; }
