@@ -881,3 +881,16 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 .os-podcast .btn { max-width: 100%; box-sizing: border-box; text-align: center; }
 .os-podcast-eps { margin: 18px 0 0; font-size: 15px; }
 .os-podcast-eps a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Our Story: Jessie's profile */
+.os-more { text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.os-cv { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad) var(--gap-y); scroll-margin-top: 96px; }
+.os-cv-head { max-width: 760px; }
+.os-cv h2 { font-weight: 300; font-size: clamp(30px, 3.8vw, 54px); line-height: 1.06; letter-spacing: -0.03em; margin: 14px 0 clamp(18px, 2.6vw, 30px); }
+.os-cv-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 clamp(24px, 4vw, 56px); margin-top: clamp(28px, 4vw, 48px); }
+.os-cv-grid div { border-top: 1px solid var(--ink); padding: 18px 0 26px; }
+.os-cv-grid h3 { font-size: 12.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 10px; color: var(--ink); }
+.os-cv-grid p { margin: 0; font-size: 17px; line-height: 1.65; color: var(--text); }
+.os-cv-foot { margin: 8px 0 0; font-size: 15px; color: var(--muted); }
+@media (min-width: 700px) { .os-cv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .os-cv-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
