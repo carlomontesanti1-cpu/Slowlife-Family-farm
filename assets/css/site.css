@@ -896,3 +896,8 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 @media (min-width: 1100px) { .os-cv-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .os-cv-facts { padding: 0; margin: clamp(28px, 4vw, 48px) 0 0; max-width: none; }
 .os-cv-facts strong { font-size: clamp(22px, 2.6vw, 38px); overflow-wrap: anywhere; }
+
+/* Clean autoplay film: no play circle, no label, only the sound switch */
+.yt-clean { cursor: default; }
+.yt-clean .sound-icon { z-index: 3; }
+.yt-clean .yt-bg { pointer-events: none; }

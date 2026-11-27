@@ -51,7 +51,7 @@
   // They begin silent, because browsers only allow sound after the visitor touches the page.
   // From the first touch on, the film that is on screen plays its sound; the others stay quiet.
   // Tapping a film still opens the full player with sound and controls (handled above).
-  var autoFilms = Array.prototype.slice.call(document.querySelectorAll('a.yt[data-autoplay], a.yt[data-autoplay-quiet]'));
+  var autoFilms = Array.prototype.slice.call(document.querySelectorAll('a.yt[data-autoplay], a.yt[data-autoplay-quiet], .yt-clean[data-yt]'));
   var saveData = navigator.connection && navigator.connection.saveData;
   var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (autoFilms.length && 'IntersectionObserver' in window && !saveData && !calm) {
@@ -65,11 +65,17 @@
       var best = null, bestRatio = 0.5;
       autoFilms.forEach(function (a) {
         var r = a.isConnected ? (seen.get(a) || 0) : 0;
-        if (r >= bestRatio && a.querySelector('.yt-bg')) { best = a; bestRatio = r; }
+        if (r >= bestRatio && a.querySelector('.yt-bg') && !a.classList.contains('yt-clean')) { best = a; bestRatio = r; }
       });
       autoFilms.forEach(function (a) {
         var fr = a.querySelector('.yt-bg');
         if (!fr) return;
+        if (a.classList.contains('yt-clean')) {
+          var vis = (seen.get(a) || 0) > 0;
+          if (vis && a.dataset.sound === 'on') { say(fr, 'unMute'); say(fr, 'setVolume', [100]); } else say(fr, 'mute');
+          say(fr, vis ? 'playVideo' : 'pauseVideo');
+          return;
+        }
         if (soundOn && a === best) { say(fr, 'unMute'); say(fr, 'setVolume', [100]); say(fr, 'playVideo'); }
         else {
           say(fr, 'mute');
@@ -106,12 +112,23 @@
     var firstTouch = function (e) {
       ['click', 'touchend', 'keydown'].forEach(function (t) { document.removeEventListener(t, firstTouch, true); });
       var t = e.target;
-      if (t && t.closest && t.closest('a.yt, video')) return; // they chose a film themselves: let that one play
+      if (t && t.closest && t.closest('a.yt, video, .yt-clean')) return; // they chose a film themselves: let that one play
       soundOn = true;
       applySound();
       autoFilms.forEach(function (a) { var l = a.querySelector('.yt-label'); if (l && /tap for sound/i.test(l.textContent)) l.textContent = 'Tap for the full film'; });
     };
     ['click', 'touchend', 'keydown'].forEach(function (t) { document.addEventListener(t, firstTouch, true); });
+    // Clean films: no play button, no label, only a small sound switch in the corner.
+    document.querySelectorAll('.yt-clean [data-yt-sound]').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        var box = b.closest('.yt-clean'), on = box.dataset.sound !== 'on';
+        box.dataset.sound = on ? 'on' : 'off';
+        b.classList.toggle('is-on', on);
+        if (on) { soundOn = false; } // the other films stay quiet while this one speaks
+        applySound();
+      });
+    });
     // If the visitor starts any film themselves, the automatic sound steps aside.
     document.addEventListener('click', function (e) {
       if (e.target.closest && e.target.closest('a.yt, video[controls]')) { soundOn = false; applySound(); }
