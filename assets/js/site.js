@@ -408,7 +408,10 @@
     entries.forEach(function (en) { en.target.dataset.seen = en.isIntersecting ? '1' : '0'; sync(en.target); });
   }, { threshold: [0, 0.25] });
   films.forEach(function (box) {
-    loader.observe(box); watcher.observe(box);
+    var have = box.querySelector('iframe');
+    if (have) have.addEventListener('load', function () { [400, 1500].forEach(function (ms) { setTimeout(function () { sync(box); }, ms); }); });
+    else loader.observe(box);
+    watcher.observe(box);
     var b = box.querySelector('[data-vm-sound]');
     if (!b) return;
     b.addEventListener('click', function (e) {
