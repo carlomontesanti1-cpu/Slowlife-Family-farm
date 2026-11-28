@@ -918,3 +918,4 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 .yt-clean.is-live .yt-bg, .vm-clean.is-live .yt-bg { opacity: 1; }
 .yt-clean .sound-icon, .vm-clean .sound-icon { opacity: 0; transition: opacity .5s ease; }
 .yt-clean.is-live .sound-icon, .vm-clean.is-live .sound-icon { opacity: .85; }
+.terms ul { color: var(--text); max-width: 720px; margin: 12px 0; padding-left: 22px; } .terms li { margin: 0 0 8px; } .terms section { scroll-margin-top: 96px; }
