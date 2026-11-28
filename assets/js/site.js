@@ -368,3 +368,58 @@
     });
   });
 })();
+
+// Vimeo films: start by themselves without sound, no buttons, only the small sound switch.
+(function () {
+  var films = Array.prototype.slice.call(document.querySelectorAll('.vm-clean[data-vimeo]'));
+  if (!films.length || !('IntersectionObserver' in window)) return;
+  var tell = function (box, method, value) {
+    var fr = box.querySelector('iframe');
+    if (!fr || !fr.contentWindow) return;
+    var msg = { method: method };
+    if (value !== undefined) msg.value = value;
+    fr.contentWindow.postMessage(JSON.stringify(msg), 'https://player.vimeo.com');
+  };
+  var sync = function (box) {
+    var on = box.dataset.sound === 'on' && box.dataset.seen === '1';
+    tell(box, 'setMuted', !on);
+    tell(box, 'setVolume', on ? 1 : 0);
+    tell(box, box.dataset.seen === '1' ? 'play' : 'pause');
+    var b = box.querySelector('[data-vm-sound]');
+    if (b) b.classList.toggle('is-on', box.dataset.sound === 'on');
+  };
+  var start = function (box) {
+    if (box.querySelector('iframe')) return;
+    var fr = document.createElement('iframe');
+    fr.className = 'yt-bg';
+    fr.src = 'https://player.vimeo.com/video/' + box.dataset.vimeo + '?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&playsinline=1&dnt=1';
+    fr.allow = 'autoplay; fullscreen; picture-in-picture';
+    fr.setAttribute('tabindex', '-1');
+    fr.setAttribute('aria-hidden', 'true');
+    fr.title = '';
+    fr.addEventListener('load', function () { [400, 1500].forEach(function (ms) { setTimeout(function () { sync(box); }, ms); }); });
+    box.insertBefore(fr, box.querySelector('[data-vm-sound]'));
+    box.classList.add('has-bg');
+  };
+  var loader = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { start(en.target); loader.unobserve(en.target); } });
+  }, { rootMargin: '300px 0px' });
+  var watcher = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { en.target.dataset.seen = en.isIntersecting ? '1' : '0'; sync(en.target); });
+  }, { threshold: [0, 0.25] });
+  films.forEach(function (box) {
+    loader.observe(box); watcher.observe(box);
+    var b = box.querySelector('[data-vm-sound]');
+    if (!b) return;
+    b.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var on = box.dataset.sound !== 'on';
+      box.dataset.sound = on ? 'on' : 'off';
+      if (on) {
+        films.forEach(function (o) { if (o !== box) { o.dataset.sound = 'off'; sync(o); } });
+        document.querySelectorAll('video[data-clip]').forEach(function (v) { v.muted = true; var vb = v.parentNode.querySelector('[data-sound-toggle]'); if (vb) vb.classList.remove('is-on'); });
+      }
+      sync(box);
+    });
+  });
+})();
