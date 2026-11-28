@@ -901,3 +901,4 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 .yt-clean { cursor: default; }
 .yt-clean .sound-icon { z-index: 3; }
 .yt-clean .yt-bg { pointer-events: none; }
+.seats + .school { border-top: 0; padding-top: clamp(24px, 4vw, 56px); }
