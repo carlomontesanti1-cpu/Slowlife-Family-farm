@@ -93,10 +93,22 @@
       fr.setAttribute('tabindex', '-1');
       fr.setAttribute('aria-hidden', 'true');
       fr.title = '';
-      fr.addEventListener('load', function () { [300, 1200, 2500].forEach(function (ms) { setTimeout(applySound, ms); }); });
+      fr.addEventListener('load', function () {
+        [300, 1200, 2500].forEach(function (ms) { setTimeout(applySound, ms); });
+        // ask the player to tell us when the film is really moving, so nothing shows before it
+        var ask = function () { if (fr.contentWindow) fr.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 1, channel: 'widget' }), '*'); };
+        [0, 500, 1500].forEach(function (ms) { setTimeout(ask, ms); });
+        setTimeout(function () { a.classList.add('is-live'); }, 6000);
+      });
       a.insertBefore(fr, a.querySelector('.yt-play'));
       a.classList.add('has-bg');
     };
+    window.addEventListener('message', function (e) {
+      if (!/youtube/.test(e.origin || '')) return;
+      var d; try { d = JSON.parse(e.data); } catch (x) { return; }
+      if (!d || !d.info || d.info.playerState !== 1) return;
+      autoFilms.forEach(function (a) { var f = a.querySelector('.yt-bg'); if (f && f.contentWindow === e.source) a.classList.add('is-live'); });
+    });
     // Load each film shortly before it scrolls into view (the first one on the page loads at once).
     var loader = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { startFilm(en.target); loader.unobserve(en.target); } });
@@ -404,12 +416,22 @@
   var loader = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { if (en.isIntersecting) { start(en.target); loader.unobserve(en.target); } });
   }, { rootMargin: '300px 0px' });
+  window.addEventListener('message', function (e) {
+    if (!/vimeo/.test(e.origin || '')) return;
+    var d = e.data; if (typeof d === 'string') { try { d = JSON.parse(d); } catch (x) { return; } }
+    if (!d || (d.event !== 'playing' && d.event !== 'timeupdate' && d.event !== 'play')) return;
+    films.forEach(function (box) { var f = box.querySelector('iframe'); if (f && f.contentWindow === e.source) box.classList.add('is-live'); });
+  });
   var watcher = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { en.target.dataset.seen = en.isIntersecting ? '1' : '0'; sync(en.target); });
   }, { threshold: [0, 0.25] });
   films.forEach(function (box) {
     var have = box.querySelector('iframe');
-    if (have) have.addEventListener('load', function () { [400, 1500].forEach(function (ms) { setTimeout(function () { sync(box); }, ms); }); });
+    var wake = function () {
+      [400, 1500].forEach(function (ms) { setTimeout(function () { sync(box); tell(box, 'addEventListener', 'playing'); tell(box, 'addEventListener', 'timeupdate'); }, ms); });
+      setTimeout(function () { box.classList.add('is-live'); }, 6000);
+    };
+    if (have) { have.addEventListener('load', wake); wake(); }
     else loader.observe(box);
     watcher.observe(box);
     var b = box.querySelector('[data-vm-sound]');

@@ -910,3 +910,11 @@ img[src*="cellar-lesson"] { object-position: 22% 50%; }
 .vm-clean { aspect-ratio: var(--ratio, 4 / 5); width: 100%; }
 .vm-clean > img { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; aspect-ratio: auto; object-fit: cover; }
 .split > .vm-clean { flex: 1 1 340px; min-width: 0; }
+
+/* Clean films: nothing shows before the film itself (no photo, no dark box) */
+.yt-clean, .vm-clean { background: transparent; }
+.yt-clean > img { visibility: hidden; }
+.yt-clean .yt-bg, .vm-clean .yt-bg { opacity: 0; transition: opacity .5s ease; }
+.yt-clean.is-live .yt-bg, .vm-clean.is-live .yt-bg { opacity: 1; }
+.yt-clean .sound-icon, .vm-clean .sound-icon { opacity: 0; transition: opacity .5s ease; }
+.yt-clean.is-live .sound-icon, .vm-clean.is-live .sound-icon { opacity: .85; }
