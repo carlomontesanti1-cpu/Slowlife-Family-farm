@@ -125,7 +125,11 @@
         var box = b.closest('.yt-clean'), on = box.dataset.sound !== 'on';
         box.dataset.sound = on ? 'on' : 'off';
         b.classList.toggle('is-on', on);
-        if (on) { soundOn = false; } // the other films stay quiet while this one speaks
+        if (on) {
+          soundOn = false; // the other films stay quiet while this one speaks
+          document.querySelectorAll('.yt-clean').forEach(function (o) { if (o !== box) { o.dataset.sound = 'off'; var ob = o.querySelector('[data-yt-sound]'); if (ob) ob.classList.remove('is-on'); } });
+          document.querySelectorAll('video[data-clip]').forEach(function (v) { v.muted = true; var vb = v.parentNode.querySelector('[data-sound-toggle]'); if (vb) vb.classList.remove('is-on'); });
+        }
         applySound();
       });
     });
